@@ -14,6 +14,8 @@ import { BoaDesignSystemModule } from '@boa/design-system';
 import { FinancialDataModule } from '@boa/financial-data';
 import { SharedUtilsModule } from '@boa/shared-utils';
 import { FeatureFlagsModule } from '@boa/feature-flags';
+import { AnalyticsModule } from '@boa/analytics';
+import { AuditLoggingModule } from '@boa/audit-logging';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +33,8 @@ import { AppComponent } from './app.component';
     FinancialDataModule,
     SharedUtilsModule,
     FeatureFlagsModule,
+    AnalyticsModule.forRoot(),
+    AuditLoggingModule,
     AppRoutingModule
   ],
   providers: [

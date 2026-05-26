@@ -419,8 +419,8 @@
   ```bash
   npx tsc --noEmit && npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `libs/analytics/` with `AnalyticsModule` (forRoot pattern), `AnalyticsService` (trackPageView, trackButtonClick, trackFormStep, trackError, trackCompletedTransfer, trackCompletedBillPay — all with PII redaction via `redactPii` from `@boa/shared-utils`, gated by `analyticsEnabled` config), `RouteAnalyticsService` (subscribes to Router `NavigationEnd`, strips query params, tracks previous route), `AnalyticsDirective` (`[boaTrackClick]` attribute directive with HostListener, category and metadata inputs). Events include correlationId, userSegment, timestamp. Logs to console simulating proprietary analytics SDK. `npx tsc --noEmit` and `npx ng build digital-banking-app` both exit 0.
 
 ---
 
@@ -442,8 +442,8 @@
   ```bash
   npx tsc --noEmit && npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `libs/audit-logging/` with `AuditLoggingModule` and `AuditLogService`. Service provides: `logLoginAttempt`, `logMfaResult`, `logTransferReview`, `logTransferConfirmation`, `logBillPayConfirmation`, `logProfileSecurityChange`, `logExportTransactions`, `logLogout`, `logSessionExpired`. Each event auto-includes correlationId (from `AuthService.getCorrelationId()`), userId, ISO 8601 timestamp, severity (Info/Warning/Critical). All metadata runs through `redactPii()` before emission. Gated by `auditLoggingEnabled` env config. Models define `AuditEventType` enum (10 types), `AuditSeverity` enum, `AuditEvent` interface, plus `TransferAuditData`, `BillPayAuditData`, `ExportAuditData` typed payloads. Both modules imported in `AppModule`. `npx tsc --noEmit` and `npx ng build digital-banking-app` both exit 0.
 
 ---
 
@@ -808,7 +808,7 @@
 | 4. Auth/MFA Flows | 4.1, 4.2, 4.3 | `[x]` |
 | 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[x]` |
 | 6. Financial Data Mocks | 6.1, 6.2 | `[x]` |
-| 7. Analytics/Audit Logging | 7.1, 7.2 | `[ ]` |
+| 7. Analytics/Audit Logging | 7.1, 7.2 | `[x]` |
 | 8. Banking Pages | 8.1, 8.2, 8.3, 8.4, 8.5, 8.6 | `[ ]` |
 | 9. Downstream Apps | 9.1, 9.2 | `[ ]` |
 | 10. Tests | 10.1, 10.2, 10.3, 10.4 | `[ ]` |
