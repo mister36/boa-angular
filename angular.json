@@ -139,6 +139,202 @@
           }
         }
       }
+    },
+    "downstream-credit-card-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": { "skipTests": true },
+        "@schematics/angular:directive": { "skipTests": true },
+        "@schematics/angular:guard": { "skipTests": true },
+        "@schematics/angular:interceptor": { "skipTests": true },
+        "@schematics/angular:pipe": { "skipTests": true },
+        "@schematics/angular:resolver": { "skipTests": true },
+        "@schematics/angular:service": { "skipTests": true }
+      },
+      "root": "apps/downstream-credit-card-app",
+      "sourceRoot": "apps/downstream-credit-card-app/src",
+      "prefix": "boa-cc",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/downstream-credit-card-app",
+            "index": "apps/downstream-credit-card-app/src/index.html",
+            "main": "apps/downstream-credit-card-app/src/main.ts",
+            "polyfills": "apps/downstream-credit-card-app/src/polyfills.ts",
+            "tsConfig": "apps/downstream-credit-card-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/downstream-credit-card-app/src/assets"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/boa-design-system/src/lib/styles"
+              ]
+            },
+            "styles": [
+              "libs/boa-design-system/src/lib/styles/styles.scss",
+              "apps/downstream-credit-card-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/downstream-credit-card-app/src/environments/environment.ts",
+                  "with": "apps/downstream-credit-card-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4201
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "downstream-credit-card-app:build:production"
+            },
+            "development": {
+              "browserTarget": "downstream-credit-card-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "downstream-credit-card-app:build"
+          }
+        }
+      }
+    },
+    "downstream-loans-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": { "skipTests": true },
+        "@schematics/angular:directive": { "skipTests": true },
+        "@schematics/angular:guard": { "skipTests": true },
+        "@schematics/angular:interceptor": { "skipTests": true },
+        "@schematics/angular:pipe": { "skipTests": true },
+        "@schematics/angular:resolver": { "skipTests": true },
+        "@schematics/angular:service": { "skipTests": true }
+      },
+      "root": "apps/downstream-loans-app",
+      "sourceRoot": "apps/downstream-loans-app/src",
+      "prefix": "boa-loans",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/downstream-loans-app",
+            "index": "apps/downstream-loans-app/src/index.html",
+            "main": "apps/downstream-loans-app/src/main.ts",
+            "polyfills": "apps/downstream-loans-app/src/polyfills.ts",
+            "tsConfig": "apps/downstream-loans-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/downstream-loans-app/src/assets"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/boa-design-system/src/lib/styles"
+              ]
+            },
+            "styles": [
+              "libs/boa-design-system/src/lib/styles/styles.scss",
+              "apps/downstream-loans-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/downstream-loans-app/src/environments/environment.ts",
+                  "with": "apps/downstream-loans-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4202
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "downstream-loans-app:build:production"
+            },
+            "development": {
+              "browserTarget": "downstream-loans-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "downstream-loans-app:build"
+          }
+        }
+      }
     }
   }
 }

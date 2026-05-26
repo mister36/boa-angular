@@ -1,0 +1,90 @@
+<div class="cc-app">
+  <header class="cc-header">
+    <mat-icon class="cc-header__logo-icon">credit_card</mat-icon>
+    <div class="cc-header__titles">
+      <h1 class="cc-header__title">Credit Card Management</h1>
+      <p class="cc-header__subtitle">Bank of America</p>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div class="cc-content" *ngIf="loading">
+    <boa-loading-skeleton variant="card"></boa-loading-skeleton>
+    <boa-loading-skeleton variant="table" [rows]="5"></boa-loading-skeleton>
+  </div>
+
+  <!-- Error State -->
+  <div class="cc-content" *ngIf="!loading && error">
+    <boa-alert-banner type="error" [dismissible]="false">
+      {{ error }}
+    </boa-alert-banner>
+  </div>
+
+  <!-- Main Content -->
+  <div class="cc-content" *ngIf="!loading && !error && account">
+
+    <!-- Payment Due Banner -->
+    <boa-alert-banner type="warning" [dismissible]="true" *ngIf="isPaymentDueSoon">
+      Payment of <boa-money-display [amount]="minimumPayment"></boa-money-display>
+      (minimum) is due on {{ paymentDueDate | date:'mediumDate' }}.
+      Current balance: <boa-money-display [amount]="currentBalance"></boa-money-display>.
+    </boa-alert-banner>
+
+    <!-- Credit Card Summary Section -->
+    <section class="cc-summary">
+      <h2 class="cc-section-title">Card Summary</h2>
+
+      <div class="cc-summary__grid">
+        <boa-account-card
+          [accountName]="account.name"
+          [accountNumber]="account.accountNumber"
+          [balance]="account.currentBalance"
+          accountType="credit"
+          [status]="account.status">
+        </boa-account-card>
+
+        <div class="cc-summary__details">
+          <div class="cc-summary__detail-item">
+            <span class="cc-summary__label">Current Balance</span>
+            <boa-money-display [amount]="currentBalance"></boa-money-display>
+          </div>
+          <div class="cc-summary__detail-item">
+            <span class="cc-summary__label">Available Credit</span>
+            <boa-money-display [amount]="availableCredit"></boa-money-display>
+          </div>
+          <div class="cc-summary__detail-item">
+            <span class="cc-summary__label">Credit Limit</span>
+            <boa-money-display [amount]="creditLimit"></boa-money-display>
+          </div>
+          <div class="cc-summary__detail-item">
+            <span class="cc-summary__label">Credit Utilization</span>
+            <span class="cc-summary__value cc-summary__value--utilization"
+                  [class.cc-summary__value--high]="utilizationPercent > 30">
+              {{ utilizationPercent }}%
+            </span>
+          </div>
+          <div class="cc-summary__detail-item">
+            <span class="cc-summary__label">APR</span>
+            <span class="cc-summary__value">{{ account.interestRate }}%</span>
+          </div>
+          <div class="cc-summary__detail-item">
+            <span class="cc-summary__label">Minimum Payment</span>
+            <boa-money-display [amount]="minimumPayment"></boa-money-display>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Transactions Section -->
+    <section class="cc-transactions">
+      <h2 class="cc-section-title">Recent Transactions</h2>
+      <boa-data-table
+        [columns]="tableColumns"
+        [data]="transactions"
+        [loading]="false"
+        emptyMessage="No recent credit card transactions"
+        [pageSize]="10">
+      </boa-data-table>
+    </section>
+  </div>
+</div>

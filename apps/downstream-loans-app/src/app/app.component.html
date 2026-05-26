@@ -1,0 +1,98 @@
+<div class="loans-app">
+  <header class="loans-header">
+    <mat-icon class="loans-header__logo-icon">request_quote</mat-icon>
+    <div class="loans-header__titles">
+      <h1 class="loans-header__title">Loan Management</h1>
+      <p class="loans-header__subtitle">Bank of America</p>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div class="loans-content" *ngIf="loading">
+    <boa-loading-skeleton variant="card"></boa-loading-skeleton>
+    <boa-loading-skeleton variant="table" [rows]="6"></boa-loading-skeleton>
+  </div>
+
+  <!-- Error State -->
+  <div class="loans-content" *ngIf="!loading && error">
+    <boa-alert-banner type="error" [dismissible]="false">
+      {{ error }}
+    </boa-alert-banner>
+  </div>
+
+  <!-- Empty State -->
+  <div class="loans-content" *ngIf="!loading && !error && !account">
+    <boa-empty-state
+      icon="request_quote"
+      title="No Loan Accounts"
+      body="You don't have any active loan accounts at this time."
+      ctaLabel="Return to Dashboard">
+    </boa-empty-state>
+  </div>
+
+  <!-- Main Content -->
+  <div class="loans-content" *ngIf="!loading && !error && account">
+
+    <!-- Autopay Banner -->
+    <boa-alert-banner type="info" [dismissible]="true">
+      <strong>Autopay is not enrolled.</strong>
+      Set up automatic payments to never miss a due date.
+      Next payment of <boa-money-display [amount]="monthlyPayment"></boa-money-display>
+      is due on {{ nextPaymentDate | date:'mediumDate' }}.
+    </boa-alert-banner>
+
+    <!-- Loan Summary Section -->
+    <section class="loans-summary">
+      <h2 class="loans-section-title">Loan Summary</h2>
+
+      <div class="loans-summary__grid">
+        <boa-account-card
+          [accountName]="account.name"
+          [accountNumber]="account.accountNumber"
+          [balance]="account.currentBalance"
+          accountType="loan"
+          [status]="account.status">
+        </boa-account-card>
+
+        <div class="loans-summary__details">
+          <div class="loans-summary__detail-item">
+            <span class="loans-summary__label">Remaining Balance</span>
+            <boa-money-display [amount]="remainingBalance"></boa-money-display>
+          </div>
+          <div class="loans-summary__detail-item">
+            <span class="loans-summary__label">Monthly Payment</span>
+            <boa-money-display [amount]="monthlyPayment"></boa-money-display>
+          </div>
+          <div class="loans-summary__detail-item">
+            <span class="loans-summary__label">Interest Rate (APR)</span>
+            <span class="loans-summary__value">{{ interestRate }}%</span>
+          </div>
+          <div class="loans-summary__detail-item">
+            <span class="loans-summary__label">Total Interest (12 mo.)</span>
+            <boa-money-display [amount]="totalInterest"></boa-money-display>
+          </div>
+          <div class="loans-summary__detail-item">
+            <span class="loans-summary__label">Total Cost (12 mo.)</span>
+            <boa-money-display [amount]="totalCost"></boa-money-display>
+          </div>
+          <div class="loans-summary__detail-item">
+            <span class="loans-summary__label">Account Opened</span>
+            <span class="loans-summary__value">{{ account.openedDate | date:'mediumDate' }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Schedule Section -->
+    <section class="loans-schedule">
+      <h2 class="loans-section-title">12-Month Payment Schedule</h2>
+      <boa-data-table
+        [columns]="tableColumns"
+        [data]="paymentSchedule"
+        [loading]="false"
+        emptyMessage="No payment schedule available"
+        [pageSize]="12">
+      </boa-data-table>
+    </section>
+  </div>
+</div>

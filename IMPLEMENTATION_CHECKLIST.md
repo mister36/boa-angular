@@ -607,8 +607,8 @@
   ```bash
   npx ng build downstream-credit-card-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `apps/downstream-credit-card-app/` with `AppModule` importing `BrowserModule`, `BrowserAnimationsModule`, `HttpClientModule`, `BoaDesignSystemModule`, `FinancialDataModule`. Single-page app fetches `acct-cc-001` (Platinum Visa) via `AccountApiClient` and `TransactionApiClient`. Uses 5 shared design system components: `AccountCardComponent`, `MoneyDisplayComponent`, `DataTableComponent` (6-column transaction table), `AlertBannerComponent` (payment due warning), `LoadingSkeletonComponent`. Shows credit utilization %, APR, available credit, credit limit. Registered in `angular.json` with `prefix: boa-cc`, port 4201. `npx ng build downstream-credit-card-app` exits 0.
 
 ---
 
@@ -628,8 +628,8 @@
   ```bash
   npx ng build downstream-loans-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `apps/downstream-loans-app/` with `AppModule` importing `BrowserModule`, `BrowserAnimationsModule`, `HttpClientModule`, `BoaDesignSystemModule`, `FinancialDataModule`. Single-page app fetches `acct-loan-001` (Auto Loan) via `AccountApiClient`. Generates 12-month amortization schedule from loan terms ($12,890.44 balance, 5.49% APR, $385/mo payment) with principal/interest breakdown per month. Uses 6 shared design system components: `AccountCardComponent`, `MoneyDisplayComponent`, `DataTableComponent` (6-column payment schedule), `AlertBannerComponent` (autopay enrollment info), `LoadingSkeletonComponent`, `EmptyStateComponent` (no loan fallback). Registered in `angular.json` with `prefix: boa-loans`, port 4202. `npx ng build downstream-loans-app` exits 0. All three apps (`digital-banking-app`, `downstream-credit-card-app`, `downstream-loans-app`) build successfully.
 
 ---
 
@@ -809,7 +809,7 @@
 | 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[x]` |
 | 6. Financial Data Mocks | 6.1, 6.2 | `[x]` |
 | 7. Analytics/Audit Logging | 7.1, 7.2 | `[x]` |
-| 8. Banking Pages | 8.1, 8.2, 8.3, 8.4, 8.5, 8.6 | `[ ]` |
-| 9. Downstream Apps | 9.1, 9.2 | `[ ]` |
+| 8. Banking Pages | 8.1, 8.2, 8.3, 8.4, 8.5, 8.6 | `[x]` |
+| 9. Downstream Apps | 9.1, 9.2 | `[x]` |
 | 10. Tests | 10.1, 10.2, 10.3, 10.4 | `[ ]` |
 | 11. Demo Docs | 11.1, 11.2, 11.3, 11.4 | `[ ]` |

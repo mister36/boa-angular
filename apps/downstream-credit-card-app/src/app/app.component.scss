@@ -1,0 +1,108 @@
+@import 'variables';
+@import 'mixins';
+
+.cc-app {
+  min-height: 100vh;
+  background-color: $boa-bg-secondary;
+}
+
+.cc-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  background-color: $boa-navy-blue;
+  color: white;
+
+  &__logo-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+}
+
+.cc-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+}
+
+.cc-section-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: $boa-navy-blue;
+  margin: $spacing-lg 0 $spacing-md;
+  padding-bottom: $spacing-xs;
+  border-bottom: 2px solid $boa-navy-blue;
+}
+
+.cc-summary {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+
+    @include respond-below(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-sm $spacing-lg;
+    align-content: start;
+    background: white;
+    border-radius: $border-radius-md;
+    padding: $spacing-md;
+    @include boa-elevation(1);
+  }
+
+  &__detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__label {
+    font-size: 12px;
+    color: $boa-gray-500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__value {
+    font-size: 16px;
+    font-weight: 500;
+    color: $boa-gray-900;
+
+    &--utilization {
+      color: $boa-success;
+    }
+
+    &--high {
+      color: $boa-warning;
+    }
+  }
+}
+
+.cc-transactions {
+  margin-top: $spacing-md;
+}
