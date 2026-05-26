@@ -1,27 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { AuthService, AuthStatus, LoginCredentials } from '@boa/auth';
 
 @Component({
   selector: 'boa-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   loginForm: FormGroup;
   isLoading = false;
   loginError = '';
   hidePassword = true;
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       rememberDevice: [false]
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onSubmit(): void {
@@ -33,16 +43,27 @@ export class LoginComponent {
     this.isLoading = true;
     this.loginError = '';
 
-    setTimeout(() => {
-      const { username, password } = this.loginForm.value;
+    const credentials: LoginCredentials = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password,
+      rememberDevice: this.loginForm.value.rememberDevice
+    };
 
-      if (username && password) {
-        this.router.navigate(['/mfa']);
-      } else {
-        this.loginError = 'Invalid username or password. Please try again.';
-      }
-
-      this.isLoading = false;
-    }, 1200);
+    this.authService.login(credentials)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (state) => {
+          this.isLoading = false;
+          if (state.status === AuthStatus.MfaPending) {
+            this.router.navigate(['/mfa']);
+          } else if (state.status === AuthStatus.Locked) {
+            this.loginError = 'Your account has been locked due to suspicious activity. Please contact support.';
+          }
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.loginError = err?.error || 'Invalid username or password. Please try again.';
+        }
+      });
   }
 }

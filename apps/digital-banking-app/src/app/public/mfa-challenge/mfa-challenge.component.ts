@@ -1,20 +1,19 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { interval, Subject, take, takeUntil } from 'rxjs';
+import { AuthService, AuthStatus } from '@boa/auth';
 
 @Component({
   selector: 'boa-mfa-challenge',
   templateUrl: './mfa-challenge.component.html',
   styleUrls: ['./mfa-challenge.component.scss']
 })
-export class MfaChallengeComponent implements OnDestroy {
+export class MfaChallengeComponent implements OnInit, OnDestroy {
   mfaForm: FormGroup;
   isLoading = false;
   errorMessage = '';
   maskedDestination = '***-***-1234';
-  failedAttempts = 0;
-  maxAttempts = 3;
   isLockedOut = false;
   resendCooldown = 0;
   codeResent = false;
@@ -23,11 +22,22 @@ export class MfaChallengeComponent implements OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.mfaForm = this.fb.group({
       code: ['', [Validators.required, Validators.pattern(/^\d{6}$/)]]
     });
+  }
+
+  ngOnInit(): void {
+    this.authService.authState$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(state => {
+        if (state.mfaChallenge) {
+          this.maskedDestination = state.mfaChallenge.maskedDestination;
+        }
+      });
   }
 
   ngOnDestroy(): void {
@@ -44,30 +54,33 @@ export class MfaChallengeComponent implements OnDestroy {
     this.isLoading = true;
     this.errorMessage = '';
 
-    setTimeout(() => {
-      const code = this.mfaForm.get('code')?.value;
+    const code = this.mfaForm.get('code')?.value;
 
-      if (code === '123456') {
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.failedAttempts++;
+    this.authService.completeMfa(code)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (state) => {
+          this.isLoading = false;
 
-        if (this.failedAttempts >= this.maxAttempts) {
-          this.isLockedOut = true;
-          this.errorMessage =
-            'Your account has been temporarily locked due to too many failed attempts. ' +
-            'Please contact customer support or try again later.';
-        } else {
-          const remaining = this.maxAttempts - this.failedAttempts;
-          this.errorMessage =
-            `Invalid verification code. ${remaining} attempt${remaining === 1 ? '' : 's'} remaining.`;
+          if (state.status === AuthStatus.Authenticated) {
+            this.router.navigate(['/dashboard']);
+          } else if (state.status === AuthStatus.Locked) {
+            this.isLockedOut = true;
+            this.errorMessage =
+              'Your account has been temporarily locked due to too many failed attempts. ' +
+              'Please contact customer support or try again later.';
+          } else if (state.mfaChallenge) {
+            const remaining = state.mfaChallenge.attemptsRemaining;
+            this.errorMessage =
+              `Invalid verification code. ${remaining} attempt${remaining === 1 ? '' : 's'} remaining.`;
+            this.mfaForm.get('code')?.reset();
+          }
+        },
+        error: () => {
+          this.isLoading = false;
+          this.errorMessage = 'An unexpected error occurred. Please try again.';
         }
-
-        this.mfaForm.get('code')?.reset();
-      }
-
-      this.isLoading = false;
-    }, 1000);
+      });
   }
 
   resendCode(): void {

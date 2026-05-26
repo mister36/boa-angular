@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subject, takeUntil } from 'rxjs';
+import { AuthService, AuthStatus } from '@boa/auth';
 
 @Component({
   selector: 'boa-session-timer',
@@ -10,20 +11,34 @@ export class SessionTimerComponent implements OnInit, OnDestroy {
   remainingMinutes = 15;
   remainingSeconds = 0;
   isWarning = false;
+  isVisible = false;
 
   private destroy$ = new Subject<void>();
-  private totalSeconds = 15 * 60;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.authState$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(state => {
+        this.isVisible = state.status === AuthStatus.Authenticated;
+      });
+
     interval(1000)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        if (this.totalSeconds > 0) {
-          this.totalSeconds--;
-          this.remainingMinutes = Math.floor(this.totalSeconds / 60);
-          this.remainingSeconds = this.totalSeconds % 60;
-          this.isWarning = this.totalSeconds <= 120;
-        }
+        if (!this.isVisible) return;
+
+        this.authService.sessionExpiresAt$
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(expiresAt => {
+            if (!expiresAt) return;
+
+            const remaining = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
+            this.remainingMinutes = Math.floor(remaining / 60);
+            this.remainingSeconds = remaining % 60;
+            this.isWarning = remaining <= 120 && remaining > 0;
+          }).unsubscribe();
       });
   }
 

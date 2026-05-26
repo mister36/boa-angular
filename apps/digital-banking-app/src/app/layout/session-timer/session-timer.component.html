@@ -1,4 +1,4 @@
-<span class="session-timer" [class.warning]="isWarning" aria-live="polite">
+<span *ngIf="isVisible" class="session-timer" [class.warning]="isWarning" aria-live="polite">
   <mat-icon class="session-timer__icon">timer</mat-icon>
   <span class="session-timer__time">{{ formattedTime }}</span>
 </span>

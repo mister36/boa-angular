@@ -190,8 +190,8 @@
   ```bash
   npx tsc --noEmit && npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `libs/auth/` with `AuthModule`, `AuthService` (BehaviorSubject-based auth state, login/completeMfa/logout/refreshSession, session timer, token storage in sessionStorage), `MockSsoProvider` (simulates delays, MFA challenge, lockout after 3 attempts, username `locked`/`error` triggers special states). Models define `AuthStatus` enum (Unauthenticated, MfaPending, Authenticated, Locked, Expired), `UserProfile`, `LoginCredentials`, `MfaChallenge`, `AuthToken`. All exported from `@boa/auth` barrel.
 
 ---
 
@@ -216,8 +216,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Class-based guards: `AuthGuard` (checks Authenticated status, redirects to /login or /mfa), `MfaGuard` (ensures MFA is complete), `RoleGuard` (checks route data roles against user profile). HTTP interceptors: `AuthTokenInterceptor` (Bearer token, skips public endpoints), `CorrelationIdInterceptor` (X-Correlation-ID header), `ErrorHandlingInterceptor` (401→logout, 403→dashboard, 503→maintenance, normalized error objects), `SessionTimeoutInterceptor` (refreshes session on successful responses). All exported from `@boa/auth`.
 
 ---
 
@@ -239,8 +239,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** `AppModule` imports `AuthModule` and registers all 4 interceptors via `HTTP_INTERCEPTORS`. `LayoutRoutingModule` adds `canActivate: [AuthGuard, MfaGuard]` on the parent route. `LoginComponent` calls `AuthService.login()` with proper error handling. `MfaChallengeComponent` calls `AuthService.completeMfa()` and reads challenge state. `HeaderComponent` subscribes to `currentUser$` for display name and calls `AuthService.logout()`. `SessionTimerComponent` reads `sessionExpiresAt$` from auth state and shows countdown only when authenticated. Full flow: /dashboard → guard → /login → AuthService.login() → /mfa → AuthService.completeMfa() → /dashboard. Build exits 0.
 
 ---
 
@@ -805,7 +805,7 @@
 | 1. Workspace Setup | 1.1, 1.2 | `[x]` |
 | 2. Angular 14 Dependencies | 2.1, 2.2 | `[x]` |
 | 3. Main App Shell | 3.1, 3.2, 3.3 | `[x]` |
-| 4. Auth/MFA Flows | 4.1, 4.2, 4.3 | `[ ]` |
+| 4. Auth/MFA Flows | 4.1, 4.2, 4.3 | `[x]` |
 | 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[ ]` |
 | 6. Financial Data Mocks | 6.1, 6.2 | `[ ]` |
 | 7. Analytics/Audit Logging | 7.1, 7.2 | `[ ]` |
