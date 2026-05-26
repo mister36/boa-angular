@@ -1,0 +1,67 @@
+<div class="login-page">
+  <div class="login-page__card">
+    <div class="login-page__header">
+      <div class="login-page__logo">
+        <mat-icon class="login-page__logo-icon">account_balance</mat-icon>
+        <h1>Bank of America</h1>
+      </div>
+      <p class="login-page__subtitle">Digital Banking Sign In</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-page__form">
+      <div *ngIf="loginError" class="login-page__error" role="alert">
+        <mat-icon>error</mat-icon>
+        <span>{{ loginError }}</span>
+      </div>
+
+      <mat-form-field appearance="outline" class="login-page__field">
+        <mat-label>Username or ID</mat-label>
+        <input matInput formControlName="username" autocomplete="username">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="login-page__field">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password"
+               [type]="hidePassword ? 'password' : 'text'"
+               autocomplete="current-password">
+        <mat-icon matPrefix>lock</mat-icon>
+        <button mat-icon-button matSuffix type="button"
+                (click)="hidePassword = !hidePassword"
+                [attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Password must be at least 8 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="rememberDevice" class="login-page__remember">
+        Remember this device
+      </mat-checkbox>
+
+      <button mat-raised-button color="primary" type="submit"
+              class="login-page__submit"
+              [disabled]="isLoading">
+        <mat-spinner *ngIf="isLoading" diameter="20" class="login-page__spinner"></mat-spinner>
+        <span *ngIf="!isLoading">Sign In</span>
+      </button>
+
+      <div class="login-page__links">
+        <a href="javascript:void(0)">Forgot Username or Password?</a>
+        <a href="javascript:void(0)">Enroll in Online Banking</a>
+      </div>
+    </form>
+
+    <div class="login-page__footer">
+      <mat-icon>security</mat-icon>
+      <span>Secure connection. Your information is protected.</span>
+    </div>
+  </div>
+</div>

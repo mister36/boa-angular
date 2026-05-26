@@ -1,0 +1,14 @@
+<div class="alert-container" *ngIf="alerts.length > 0">
+  <div *ngFor="let alert of alerts; let i = index"
+       class="alert-banner"
+       [ngClass]="'alert-banner--' + alert.type"
+       role="alert">
+    <mat-icon class="alert-banner__icon">
+      {{ alert.type === 'error' ? 'error' : alert.type === 'warning' ? 'warning' : 'info' }}
+    </mat-icon>
+    <span class="alert-banner__message">{{ alert.message }}</span>
+    <button mat-icon-button class="alert-banner__close" (click)="dismiss(i)" aria-label="Dismiss alert">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>

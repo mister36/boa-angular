@@ -1,0 +1,22 @@
+<div class="boa-layout">
+  <boa-header (toggleSidenav)="onToggleSidenav()"></boa-header>
+
+  <mat-sidenav-container class="boa-layout__container">
+    <mat-sidenav
+      #sidenav
+      [mode]="sidenavMode"
+      [opened]="sidenavOpened"
+      class="boa-layout__sidenav"
+      [fixedInViewport]="isMobile"
+      fixedTopGap="64">
+      <boa-sidenav></boa-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="boa-layout__content">
+      <boa-alert-container></boa-alert-container>
+      <main class="boa-layout__main">
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

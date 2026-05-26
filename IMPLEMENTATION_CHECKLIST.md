@@ -116,8 +116,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Generated via `ng generate application digital-banking-app --routing --style=scss --prefix=boa --skip-tests`. Registered in `angular.json` with `stylePreprocessorOptions` pointing to design system styles directory. Wired `libs/boa-design-system/src/lib/styles/styles.scss` into global styles array. AppModule imports BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule. Top-level routing lazy-loads LayoutModule and PublicModule. Production budgets relaxed to 2MB/5MB to accommodate Angular Material. Build exits 0.
 
 ---
 
@@ -140,8 +140,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** LayoutModule created with LayoutComponent (mat-sidenav-container, responsive via BreakpointObserver), HeaderComponent (logo, user menu with sign-out, notification badge), SidenavComponent (6 nav items with routerLinkActive), SessionTimerComponent (15-min countdown with warning state at 2min), AlertContainerComponent (info/warning/error/success dismissible banners). LayoutRoutingModule uses placeholder components for dashboard, accounts/:id, transactions, transfer, bill-pay, profile. Sidenav switches between `mode="side"` and `mode="over"` based on viewport. Auto-closes sidenav on navigation in mobile mode. Build exits 0.
 
 ---
 
@@ -164,8 +164,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** PublicModule created with 4 components under `public/`. LoginComponent: reactive form (username required, password required + minLength 8), remember device checkbox, loading spinner, error state, password visibility toggle, mock navigation to `/mfa` on submit. MfaChallengeComponent: 6-digit code input (pattern validator), resend code with 30s cooldown, lockout after 3 failed attempts, mock code `123456` succeeds. SessionExpiredComponent: static page with security message and Return to Sign In button. MaintenanceComponent: static page with Try Again (page reload) and Contact Support (tel link). All pages use BoA-branded card layout centered on gradient background. Build exits 0.
 
 ---
 
@@ -804,7 +804,7 @@
 |-------|-------|--------|
 | 1. Workspace Setup | 1.1, 1.2 | `[x]` |
 | 2. Angular 14 Dependencies | 2.1, 2.2 | `[x]` |
-| 3. Main App Shell | 3.1, 3.2, 3.3 | `[ ]` |
+| 3. Main App Shell | 3.1, 3.2, 3.3 | `[x]` |
 | 4. Auth/MFA Flows | 4.1, 4.2, 4.3 | `[ ]` |
 | 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[ ]` |
 | 6. Financial Data Mocks | 6.1, 6.2 | `[ ]` |

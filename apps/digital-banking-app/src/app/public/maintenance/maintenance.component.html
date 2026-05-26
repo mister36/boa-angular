@@ -1,0 +1,26 @@
+<div class="maintenance-page">
+  <div class="maintenance-page__card">
+    <mat-icon class="maintenance-page__icon">engineering</mat-icon>
+    <h1>Scheduled Maintenance</h1>
+    <p>
+      We're performing scheduled maintenance to improve your Digital Banking experience.
+      We apologize for the inconvenience.
+    </p>
+    <p class="maintenance-page__secondary">
+      Please check back shortly. If you need immediate assistance, contact us below.
+    </p>
+    <div class="maintenance-page__actions">
+      <button mat-raised-button color="primary"
+              (click)="onTryAgain()"
+              class="maintenance-page__button">
+        Try Again
+      </button>
+      <a mat-stroked-button color="primary"
+         href="tel:+18004321000"
+         class="maintenance-page__button">
+        <mat-icon>phone</mat-icon>
+        Contact Support
+      </a>
+    </div>
+  </div>
+</div>

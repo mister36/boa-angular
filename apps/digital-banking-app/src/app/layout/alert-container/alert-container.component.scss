@@ -1,0 +1,44 @@
+.alert-container {
+  padding: 0 16px;
+}
+
+.alert-banner {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+
+  &--info {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+  }
+
+  &--warning {
+    background-color: #fff3e0;
+    color: #e65100;
+  }
+
+  &--error {
+    background-color: #fce4ec;
+    color: #b71c1c;
+  }
+
+  &--success {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+  }
+
+  &__icon {
+    margin-right: 12px;
+  }
+
+  &__message {
+    flex: 1;
+  }
+
+  &__close {
+    margin-left: 8px;
+  }
+}
