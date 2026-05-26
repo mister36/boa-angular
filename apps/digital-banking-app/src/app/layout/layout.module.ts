@@ -19,28 +19,13 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { SessionTimerComponent } from './session-timer/session-timer.component';
 import { AlertContainerComponent } from './alert-container/alert-container.component';
 
-import {
-  DashboardPlaceholderComponent,
-  AccountDetailPlaceholderComponent,
-  TransactionsPlaceholderComponent,
-  TransferPlaceholderComponent,
-  BillPayPlaceholderComponent,
-  ProfilePlaceholderComponent
-} from './placeholders/placeholder.components';
-
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
     SidenavComponent,
     SessionTimerComponent,
-    AlertContainerComponent,
-    DashboardPlaceholderComponent,
-    AccountDetailPlaceholderComponent,
-    TransactionsPlaceholderComponent,
-    TransferPlaceholderComponent,
-    BillPayPlaceholderComponent,
-    ProfilePlaceholderComponent
+    AlertContainerComponent
   ],
   imports: [
     CommonModule,

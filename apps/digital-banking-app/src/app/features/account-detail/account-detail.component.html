@@ -1,0 +1,114 @@
+<div class="account-detail-container">
+  <!-- Loading State -->
+  <boa-loading-skeleton
+    *ngIf="loading"
+    variant="card"
+    [rows]="2">
+  </boa-loading-skeleton>
+
+  <!-- Error State -->
+  <boa-alert-banner
+    *ngIf="error"
+    type="error"
+    [dismissible]="false">
+    {{ error }}
+  </boa-alert-banner>
+
+  <!-- Account Detail Content -->
+  <ng-container *ngIf="!loading && !error && account">
+    <!-- Account Header -->
+    <mat-card class="account-header-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>account_balance</mat-icon>
+        <mat-card-title>{{ account.name }}</mat-card-title>
+        <mat-card-subtitle>
+          Account: {{ maskedAccountNumber }}
+          <span *ngIf="account.routingNumber"> | Routing: {{ maskedRoutingNumber }}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="balance-row">
+          <div class="balance-item">
+            <span class="balance-label">Available Balance</span>
+            <boa-money-display [amount]="account.availableBalance" currency="USD"></boa-money-display>
+          </div>
+          <div class="balance-item">
+            <span class="balance-label">Current Balance</span>
+            <boa-money-display [amount]="account.currentBalance" currency="USD"></boa-money-display>
+          </div>
+          <div class="balance-item" *ngIf="account.creditLimit">
+            <span class="balance-label">Credit Limit</span>
+            <boa-money-display [amount]="account.creditLimit" currency="USD"></boa-money-display>
+          </div>
+          <div class="balance-item" *ngIf="account.interestRate">
+            <span class="balance-label">Interest Rate</span>
+            <span class="balance-value">{{ account.interestRate }}%</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Filters -->
+    <mat-card class="filters-card">
+      <mat-card-content>
+        <form [formGroup]="filterForm" class="filter-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Transaction Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option [value]="null">All</mat-option>
+              <mat-option *ngFor="let t of transactionTypes" [value]="t">
+                {{ t | titlecase }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+
+          <div class="filter-actions">
+            <button mat-raised-button color="primary" (click)="applyFilters()">Apply</button>
+            <button mat-button (click)="clearFilters()">Clear</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Transactions Table -->
+    <div class="transactions-section">
+      <div class="section-header">
+        <h2>Transactions</h2>
+        <button mat-raised-button color="accent" (click)="downloadTransactions()">
+          <mat-icon>download</mat-icon>
+          Export CSV
+        </button>
+      </div>
+
+      <boa-loading-skeleton
+        *ngIf="transactionsLoading"
+        variant="table"
+        [rows]="5">
+      </boa-loading-skeleton>
+
+      <boa-data-table
+        *ngIf="!transactionsLoading"
+        [columns]="tableColumns"
+        [data]="transactions"
+        [loading]="transactionsLoading"
+        emptyMessage="No transactions found for this account."
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 50]">
+      </boa-data-table>
+    </div>
+  </ng-container>
+</div>

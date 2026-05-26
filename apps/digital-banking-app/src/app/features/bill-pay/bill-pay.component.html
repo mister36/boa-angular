@@ -1,0 +1,177 @@
+<div class="bill-pay-container">
+  <h1 class="page-title">Bill Pay</h1>
+
+  <boa-loading-skeleton *ngIf="loading" variant="card" [rows]="3"></boa-loading-skeleton>
+
+  <ng-container *ngIf="!loading">
+    <!-- Payee List State -->
+    <ng-container *ngIf="state === 'list'">
+      <div class="payee-header">
+        <h2>Your Payees</h2>
+        <button mat-raised-button color="primary" (click)="openAddPayeeDialog()">
+          <mat-icon>add</mat-icon>
+          Add Payee
+        </button>
+      </div>
+
+      <boa-empty-state
+        *ngIf="payees.length === 0"
+        icon="receipt"
+        title="No Payees"
+        body="You haven't added any payees yet. Add a payee to get started."
+        ctaLabel="Add Payee"
+        (ctaClick)="openAddPayeeDialog()">
+      </boa-empty-state>
+
+      <div class="payee-grid" *ngIf="payees.length > 0">
+        <mat-card *ngFor="let payee of payees" class="payee-card" (click)="selectPayee(payee)">
+          <mat-card-header>
+            <mat-icon mat-card-avatar>payment</mat-icon>
+            <mat-card-title>{{ payee.nickname || payee.name }}</mat-card-title>
+            <mat-card-subtitle>{{ payee.name }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="payee-details">
+              <span class="payee-category">{{ payee.category | titlecase }}</span>
+              <span *ngIf="payee.isAutoPay" class="auto-pay-badge">AutoPay</span>
+            </div>
+            <div class="last-payment" *ngIf="payee.lastPaymentDate">
+              Last paid: {{ payee.lastPaymentAmount | currency:'USD' }} on {{ payee.lastPaymentDate }}
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <!-- Payment Form State -->
+    <ng-container *ngIf="state === 'payment' && selectedPayee">
+      <button mat-button (click)="goBack()" class="back-button">
+        <mat-icon>arrow_back</mat-icon> Back to Payees
+      </button>
+
+      <mat-card class="payment-form-card">
+        <mat-card-header>
+          <mat-card-title>Pay {{ selectedPayee.nickname || selectedPayee.name }}</mat-card-title>
+          <mat-card-subtitle>{{ selectedPayee.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="paymentForm" class="payment-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Pay From</mat-label>
+              <mat-select formControlName="sourceAccountId">
+                <mat-option *ngFor="let account of accounts" [value]="account.id">
+                  {{ account.name }} - Available: {{ account.availableBalance | currency:'USD' }}
+                </mat-option>
+              </mat-select>
+              <mat-error>Please select an account</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Amount</mat-label>
+              <span matPrefix>$ &nbsp;</span>
+              <input matInput formControlName="amount" type="number" step="0.01" min="0.01">
+              <mat-error>Please enter a valid amount</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Scheduled Date</mat-label>
+              <input matInput [matDatepicker]="datePicker" formControlName="scheduledDate">
+              <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+              <mat-datepicker #datePicker></mat-datepicker>
+              <mat-error>Please select a date</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Memo (optional)</mat-label>
+              <input matInput formControlName="memo" maxlength="100">
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="goBack()">Cancel</button>
+          <button mat-raised-button color="primary"
+                  [disabled]="paymentForm.invalid"
+                  (click)="goToReview()">
+            Review Payment
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+
+    <!-- Review State -->
+    <ng-container *ngIf="state === 'review' && selectedPayee">
+      <mat-card class="review-card">
+        <mat-card-header>
+          <mat-card-title>Review Payment</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="review-details">
+            <div class="review-row">
+              <span class="review-label">Pay To</span>
+              <span class="review-value">{{ selectedPayee.name }}</span>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="review-row">
+              <span class="review-label">Amount</span>
+              <span class="review-value amount">{{ paymentForm.value.amount | currency:'USD' }}</span>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="review-row">
+              <span class="review-label">Scheduled Date</span>
+              <span class="review-value">{{ paymentForm.value.scheduledDate | date:'mediumDate' }}</span>
+            </div>
+            <mat-divider *ngIf="paymentForm.value.memo"></mat-divider>
+            <div class="review-row" *ngIf="paymentForm.value.memo">
+              <span class="review-label">Memo</span>
+              <span class="review-value">{{ paymentForm.value.memo }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="goBack()">Edit</button>
+          <button mat-raised-button color="warn"
+                  [disabled]="submitting"
+                  (click)="submitPayment()">
+            {{ submitting ? 'Processing...' : 'Confirm Payment' }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+
+    <!-- Success State -->
+    <ng-container *ngIf="state === 'success' && paymentResult">
+      <div class="success-container">
+        <mat-icon class="success-icon">check_circle</mat-icon>
+        <h2>Payment Scheduled!</h2>
+        <p class="success-message">Your payment has been successfully scheduled.</p>
+
+        <mat-card class="receipt-card">
+          <mat-card-content>
+            <div class="review-row">
+              <span class="review-label">Confirmation #</span>
+              <span class="review-value mono">{{ paymentResult.confirmationNumber }}</span>
+            </div>
+            <div class="review-row" *ngIf="paymentResult.scheduledDate">
+              <span class="review-label">Scheduled Date</span>
+              <span class="review-value">{{ paymentResult.scheduledDate }}</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <button mat-raised-button color="primary" (click)="resetToList()">
+          Make Another Payment
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Error State -->
+    <ng-container *ngIf="state === 'error'">
+      <boa-alert-banner type="error" [dismissible]="false">
+        {{ error }}
+      </boa-alert-banner>
+      <button mat-raised-button (click)="resetToList()" class="retry-button">
+        Try Again
+      </button>
+    </ng-container>
+  </ng-container>
+</div>

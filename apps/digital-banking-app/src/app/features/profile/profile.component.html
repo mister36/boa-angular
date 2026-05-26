@@ -1,0 +1,160 @@
+<div class="profile-container">
+  <h1 class="page-title">Profile & Security</h1>
+
+  <!-- Profile Info -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>person</mat-icon>
+      <mat-card-title>Personal Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Full Name</span>
+          <span class="info-value">{{ userName }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <span class="info-value">{{ maskedEmail }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Phone</span>
+          <span class="info-value">{{ maskedPhone }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Member Since</span>
+          <span class="info-value">{{ memberSince }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- MFA Methods -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>security</mat-icon>
+      <mat-card-title>Multi-Factor Authentication</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let method of mfaMethods">
+          <mat-icon matListItemIcon>
+            {{ method.type === 'sms' ? 'sms' : method.type === 'email' ? 'email' : 'phone_android' }}
+          </mat-icon>
+          <div matListItemTitle>
+            {{ method.type | titlecase }}
+            <mat-chip-list *ngIf="method.isPrimary" class="inline-chip">
+              <mat-chip color="primary" selected>Primary</mat-chip>
+            </mat-chip-list>
+          </div>
+          <div matListItemLine>{{ method.value }}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Preferences -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>settings</mat-icon>
+      <mat-card-title>Preferences</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="preference-row">
+        <div>
+          <span class="preference-title">Paperless Statements</span>
+          <span class="preference-description">Receive statements electronically instead of by mail</span>
+        </div>
+        <mat-slide-toggle
+          [checked]="paperlessEnabled"
+          (change)="togglePaperless()"
+          color="primary">
+        </mat-slide-toggle>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="preference-row">
+        <div>
+          <span class="preference-title">Change Password</span>
+          <span class="preference-description">Update your account password</span>
+        </div>
+        <button mat-stroked-button>Change</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Login Activity -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>history</mat-icon>
+      <mat-card-title>Recent Login Activity</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="loginActivity" class="activity-table">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let row">{{ row.date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ipAddress">
+          <th mat-header-cell *matHeaderCellDef>IP Address</th>
+          <td mat-cell *matCellDef="let row">{{ row.ipAddress }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="device">
+          <th mat-header-cell *matHeaderCellDef>Device</th>
+          <td mat-cell *matCellDef="let row">{{ row.device }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef>Location</th>
+          <td mat-cell *matCellDef="let row">{{ row.location }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let row">
+            <span class="status-badge" [class]="'status--' + row.status">
+              {{ row.status | titlecase }}
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="loginActivityColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: loginActivityColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Trusted Devices -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>devices</mat-icon>
+      <mat-card-title>Trusted Devices</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let device of trustedDevices">
+          <mat-icon matListItemIcon>
+            {{ device.name.includes('iPhone') || device.name.includes('iPad') ? 'phone_iphone' : 'laptop_mac' }}
+          </mat-icon>
+          <div matListItemTitle>{{ device.name }}</div>
+          <div matListItemLine>{{ device.browser }} &middot; Last used: {{ device.lastUsed }}</div>
+          <button matListItemMeta mat-icon-button (click)="removeDevice(device)" aria-label="Remove device">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-divider></mat-divider>
+
+      <div class="sign-out-section">
+        <button mat-raised-button color="warn" (click)="signOutAllDevices()">
+          <mat-icon>logout</mat-icon>
+          Sign Out All Devices
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

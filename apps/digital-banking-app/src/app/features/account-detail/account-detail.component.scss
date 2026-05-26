@@ -1,0 +1,76 @@
+.account-detail-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.account-header-card {
+  margin-bottom: 24px;
+
+  mat-card-content {
+    padding-top: 16px;
+  }
+}
+
+.balance-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.balance-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.balance-label {
+  font-size: 0.85rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balance-value {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #012169;
+}
+
+.filters-card {
+  margin-bottom: 24px;
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+
+  mat-form-field {
+    flex: 1;
+    min-width: 180px;
+  }
+}
+
+.filter-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.transactions-section {
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #012169;
+      margin: 0;
+    }
+  }
+}

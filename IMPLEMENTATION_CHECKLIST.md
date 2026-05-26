@@ -467,8 +467,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `DashboardModule` as lazy-loaded feature. Account cards grid with type mapping (`credit_card` → `credit`), total balance summary (checking + savings), recent 5 transactions, loading skeleton, error/empty states, analytics page view. All composed from `@boa/design-system` components.
 
 ---
 
@@ -490,8 +490,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `AccountDetailModule` with account header (masked account/routing numbers via `@boa/shared-utils`), balance display, transaction `boa-data-table` with type/date-range filters, CSV export with audit logging. Reads `:id` route param.
 
 ---
 
@@ -513,8 +513,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `TransactionsModule` with full search/filter form (debounced search, type, category, date range), `boa-data-table`, `TransactionDetailDialogComponent` for row click detail view, CSV export with audit logging, provider error handling.
 
 ---
 
@@ -538,8 +538,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `TransferModule` with 6-step `MatStepper` flow: select source, select destination, enter amount (custom validators: positiveAmount, withinDailyLimit), review (audit log), confirm (validate + submit + audit log), success receipt. Analytics `trackFormStep` on each step change, `trackCompletedTransfer` on success. Confirmation dialog replaced with inline confirm step per Angular Material stepper UX.
 
 ---
 
@@ -561,8 +561,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `BillPayModule` with payee list grid (cards with category/autopay badges), `AddPayeeDialogComponent` (MatDialog form), payment form (source account, amount, scheduled date), review/confirm flow, success state with confirmation number. Audit logging on payment confirmation, analytics on completed bill pay.
 
 ---
 
@@ -583,8 +583,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `ProfileModule` with personal info (masked email/phone via `redactEmail`/`redactPhone`), MFA methods list, paperless toggle (audit logged), login activity `mat-table` (mock data), trusted devices list with remove action, "Sign Out All Devices" button (audit logged). All security changes fire `auditLogService.logProfileSecurityChange`.
 
 ---
 

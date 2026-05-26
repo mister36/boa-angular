@@ -1,0 +1,26 @@
+.transfer-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #012169;
+  margin-bottom: 24px;
+}
+
+.step-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+::ng-deep .mat-stepper-horizontal {
+  .mat-horizontal-stepper-header-container {
+    margin-bottom: 24px;
+  }
+}

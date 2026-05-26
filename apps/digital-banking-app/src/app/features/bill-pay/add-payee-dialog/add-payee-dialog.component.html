@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Add New Payee</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="payeeForm" class="payee-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Payee Name</mat-label>
+      <input matInput formControlName="name" placeholder="e.g., City Electric Company">
+      <mat-error>Payee name is required (min 2 characters)</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nickname (optional)</mat-label>
+      <input matInput formControlName="nickname" placeholder="e.g., Electric Bill">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Account Number</mat-label>
+      <input matInput formControlName="accountNumber">
+      <mat-error>Account number is required (min 4 characters)</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Routing Number (optional)</mat-label>
+      <input matInput formControlName="routingNumber">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let cat of categories" [value]="cat">
+          {{ cat | titlecase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary"
+          [disabled]="payeeForm.invalid"
+          (click)="submit()">
+    Add Payee
+  </button>
+</mat-dialog-actions>

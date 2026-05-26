@@ -1,0 +1,67 @@
+.dashboard-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.balance-summary-card {
+  margin-bottom: 32px;
+
+  mat-card-content {
+    padding-top: 16px;
+
+    boa-money-display {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #012169;
+  margin: 24px 0 16px;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.recent-transactions-card {
+  .transaction-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .transaction-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .transaction-description {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .transaction-date {
+    font-size: 0.85rem;
+    color: #666;
+  }
+}

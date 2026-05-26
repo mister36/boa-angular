@@ -1,0 +1,98 @@
+<div class="transfer-container">
+  <h1 class="page-title">Transfer Funds</h1>
+
+  <boa-loading-skeleton *ngIf="loading" variant="card" [rows]="3"></boa-loading-skeleton>
+
+  <ng-container *ngIf="!loading">
+    <mat-stepper #stepper linear (selectionChange)="onStepChange($event)">
+      <!-- Step 1: Select Source Account -->
+      <mat-step [stepControl]="sourceFormGroup">
+        <ng-template matStepLabel>Source Account</ng-template>
+        <boa-select-source-step
+          [formGroup]="sourceFormGroup"
+          [accounts]="accounts">
+        </boa-select-source-step>
+        <div class="step-actions">
+          <button mat-raised-button color="primary" matStepperNext
+                  [disabled]="sourceFormGroup.invalid">
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <!-- Step 2: Select Destination Account -->
+      <mat-step [stepControl]="destinationFormGroup">
+        <ng-template matStepLabel>Destination Account</ng-template>
+        <boa-select-destination-step
+          [formGroup]="destinationFormGroup"
+          [accounts]="availableDestinations">
+        </boa-select-destination-step>
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext
+                  [disabled]="destinationFormGroup.invalid">
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <!-- Step 3: Enter Amount -->
+      <mat-step [stepControl]="amountFormGroup">
+        <ng-template matStepLabel>Amount</ng-template>
+        <boa-enter-amount-step
+          [formGroup]="amountFormGroup"
+          [sourceAccount]="sourceAccount">
+        </boa-enter-amount-step>
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext
+                  [disabled]="amountFormGroup.invalid">
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <!-- Step 4: Review -->
+      <mat-step>
+        <ng-template matStepLabel>Review</ng-template>
+        <boa-review-step
+          [sourceAccount]="sourceAccount"
+          [destinationAccount]="destinationAccount"
+          [amount]="transferAmount"
+          [memo]="amountFormGroup.value.memo"
+          (reviewed)="onReviewStep()">
+        </boa-review-step>
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>
+            Continue to Confirm
+          </button>
+        </div>
+      </mat-step>
+
+      <!-- Step 5: Confirm -->
+      <mat-step>
+        <ng-template matStepLabel>Confirm</ng-template>
+        <boa-confirm-step
+          [sourceAccount]="sourceAccount"
+          [destinationAccount]="destinationAccount"
+          [amount]="transferAmount"
+          [submitting]="submitting"
+          [error]="transferError"
+          (confirmed)="confirmTransfer()">
+        </boa-confirm-step>
+        <div class="step-actions">
+          <button mat-button matStepperPrevious [disabled]="submitting">Back</button>
+        </div>
+      </mat-step>
+
+      <!-- Step 6: Success -->
+      <mat-step>
+        <ng-template matStepLabel>Complete</ng-template>
+        <boa-success-step
+          [result]="transferResult">
+        </boa-success-step>
+      </mat-step>
+    </mat-stepper>
+  </ng-container>
+</div>

@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Transaction Details</h2>
+
+<mat-dialog-content>
+  <div class="detail-grid">
+    <div class="detail-row">
+      <span class="detail-label">Description</span>
+      <span class="detail-value">{{ transaction.description }}</span>
+    </div>
+
+    <div class="detail-row" *ngIf="transaction.merchantName">
+      <span class="detail-label">Merchant</span>
+      <span class="detail-value">{{ transaction.merchantName }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Date</span>
+      <span class="detail-value">{{ transaction.date }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Amount</span>
+      <span class="detail-value" [class.debit]="transaction.type === 'debit'" [class.credit]="transaction.type === 'credit'">
+        {{ transaction.type === 'debit' ? '-' : '+' }}{{ transaction.amount | currency:'USD' }}
+      </span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Type</span>
+      <span class="detail-value">{{ transaction.type | titlecase }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Category</span>
+      <span class="detail-value">{{ transaction.category | titlecase }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Status</span>
+      <span class="detail-value status-badge" [class]="'status--' + transaction.status">
+        {{ transaction.status | titlecase }}
+      </span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Reference #</span>
+      <span class="detail-value mono">{{ transaction.referenceNumber }}</span>
+    </div>
+
+    <div class="detail-row" *ngIf="transaction.runningBalance !== undefined">
+      <span class="detail-label">Running Balance</span>
+      <span class="detail-value">{{ transaction.runningBalance | currency:'USD' }}</span>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+</mat-dialog-actions>

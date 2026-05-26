@@ -1,0 +1,88 @@
+<div class="dashboard-container">
+  <!-- Loading State -->
+  <boa-loading-skeleton
+    *ngIf="loading"
+    variant="card"
+    [rows]="3">
+  </boa-loading-skeleton>
+
+  <!-- Error State -->
+  <boa-alert-banner
+    *ngIf="error"
+    type="error"
+    [dismissible]="false">
+    {{ error }}
+  </boa-alert-banner>
+
+  <!-- Dashboard Content -->
+  <ng-container *ngIf="!loading && !error">
+    <!-- Empty State -->
+    <boa-empty-state
+      *ngIf="accounts.length === 0"
+      icon="account_balance"
+      title="No Accounts Found"
+      body="You don't have any accounts set up yet. Please contact customer support for assistance.">
+    </boa-empty-state>
+
+    <ng-container *ngIf="accounts.length > 0">
+      <!-- Total Balance Summary -->
+      <mat-card class="balance-summary-card">
+        <mat-card-header>
+          <mat-card-title>Total Available Balance</mat-card-title>
+          <mat-card-subtitle>Checking & Savings</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <boa-money-display
+            [amount]="totalBalance"
+            currency="USD">
+          </boa-money-display>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Account Cards Grid -->
+      <h2 class="section-title">Your Accounts</h2>
+      <div class="accounts-grid">
+        <boa-account-card
+          *ngFor="let account of accounts"
+          [accountName]="account.name"
+          [accountNumber]="account.accountNumber"
+          [balance]="account.availableBalance"
+          [accountType]="mapAccountType(account.type)"
+          [status]="account.status"
+          (cardClick)="onAccountClick(account)">
+        </boa-account-card>
+      </div>
+
+      <!-- Recent Transactions -->
+      <h2 class="section-title">Recent Transactions</h2>
+      <mat-card class="recent-transactions-card">
+        <mat-card-content>
+          <div class="transaction-list" *ngIf="recentTransactions.length > 0">
+            <div class="transaction-item" *ngFor="let txn of recentTransactions">
+              <div class="transaction-info">
+                <span class="transaction-description">{{ txn.description }}</span>
+                <span class="transaction-date">{{ txn.date }}</span>
+              </div>
+              <boa-money-display
+                [amount]="txn.amount"
+                currency="USD"
+                [showSign]="true">
+              </boa-money-display>
+            </div>
+          </div>
+          <boa-empty-state
+            *ngIf="recentTransactions.length === 0"
+            icon="receipt_long"
+            title="No Recent Transactions"
+            body="No recent transaction activity to display.">
+          </boa-empty-state>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button color="primary" routerLink="/transactions">
+            View All Transactions
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </ng-container>
+</div>
