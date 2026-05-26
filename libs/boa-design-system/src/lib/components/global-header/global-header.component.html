@@ -1,0 +1,55 @@
+<mat-toolbar class="global-header" color="primary">
+  <button mat-icon-button
+          (click)="onMenuToggle()"
+          aria-label="Toggle navigation menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="global-header__logo">
+    <span class="global-header__logo-text">Bank of America</span>
+  </div>
+
+  <span class="global-header__spacer"></span>
+
+  <div *ngIf="showSearch && !isMobile" class="global-header__search">
+    <mat-icon class="global-header__search-icon">search</mat-icon>
+    <input type="text"
+           class="global-header__search-input"
+           placeholder="Search..."
+           aria-label="Search">
+  </div>
+
+  <button *ngIf="showSearch && isMobile"
+          mat-icon-button
+          aria-label="Search">
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <button mat-icon-button
+          [matBadge]="notificationCount > 0 ? notificationCount : null"
+          matBadgeColor="accent"
+          matBadgeSize="small"
+          aria-label="Notifications">
+    <mat-icon>notifications</mat-icon>
+  </button>
+
+  <button mat-button
+          [matMenuTriggerFor]="userMenu"
+          class="global-header__user-trigger">
+    <span class="global-header__avatar">{{ userInitial }}</span>
+    <span *ngIf="!isMobile" class="global-header__user-name">{{ userName }}</span>
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu" xPosition="before">
+    <button mat-menu-item (click)="onProfileClick()">
+      <mat-icon>person</mat-icon>
+      <span>Profile & Security</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="onSignOut()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign Out</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

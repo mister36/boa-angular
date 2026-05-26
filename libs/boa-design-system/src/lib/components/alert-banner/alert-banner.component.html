@@ -1,0 +1,19 @@
+<div *ngIf="visible"
+     class="alert-banner"
+     [ngClass]="'alert-banner--' + type"
+     role="alert"
+     aria-live="polite">
+  <mat-icon class="alert-banner__icon">{{ effectiveIcon }}</mat-icon>
+
+  <div class="alert-banner__content">
+    <ng-content></ng-content>
+  </div>
+
+  <button *ngIf="dismissible"
+          mat-icon-button
+          class="alert-banner__close"
+          (click)="dismiss()"
+          aria-label="Dismiss alert">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

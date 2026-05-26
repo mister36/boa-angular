@@ -1,0 +1,13 @@
+<mat-horizontal-stepper *ngIf="orientation === 'horizontal'"
+                       [linear]="linear"
+                       class="boa-stepper"
+                       #stepper>
+  <ng-content></ng-content>
+</mat-horizontal-stepper>
+
+<mat-vertical-stepper *ngIf="orientation === 'vertical'"
+                      [linear]="linear"
+                      class="boa-stepper"
+                      #stepper>
+  <ng-content></ng-content>
+</mat-vertical-stepper>

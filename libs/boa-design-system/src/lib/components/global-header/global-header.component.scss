@@ -1,0 +1,81 @@
+@import 'variables';
+
+.global-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $boa-navy-blue;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-left: $spacing-sm;
+  }
+
+  &__logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+  }
+
+  &__spacer {
+    flex: 1;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: $border-radius-pill;
+    padding: $spacing-xs $spacing-sm;
+    margin-right: $spacing-sm;
+  }
+
+  &__search-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    margin-right: $spacing-xs;
+  }
+
+  &__search-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 14px;
+    width: 200px;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &__user-trigger {
+    color: #ffffff;
+    text-transform: none;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  &__user-name {
+    font-size: 14px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

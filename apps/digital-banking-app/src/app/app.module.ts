@@ -10,6 +10,7 @@ import {
   ErrorHandlingInterceptor,
   SessionTimeoutInterceptor
 } from '@boa/auth';
+import { BoaDesignSystemModule } from '@boa/design-system';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AuthModule,
+    BoaDesignSystemModule,
     AppRoutingModule
   ],
   providers: [

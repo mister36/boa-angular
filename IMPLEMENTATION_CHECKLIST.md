@@ -266,8 +266,8 @@
   ```bash
   npx tsc --noEmit && npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `BoaDesignSystemModule` importing CommonModule, RouterModule, ReactiveFormsModule, and 17 Angular Material modules. Created `_mixins.scss` with `respond-to`, `respond-below`, `boa-elevation`, `text-truncate`, `card-base`, `focus-ring`, and `visually-hidden` mixins. Updated `index.ts` barrel to export module and all 12 components + types. `styles.scss` imports mixins. `npx tsc --noEmit` and `npx ng build digital-banking-app` both exit 0.
 
 ---
 
@@ -290,8 +290,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created 4 components: `BoaButtonComponent` (primary/secondary/tertiary via mat-raised-button/mat-stroked-button/mat-button, loading spinner, disabled, icon), `AccountCardComponent` (mat-card, masked account number `****XXXX`, balance via MoneyDisplay, status badge active/frozen/closed, hover elevation, OnPush), `MoneyDisplayComponent` ($1,234.56 format, negative red, masked `****`, compact $1.2K, OnPush), `AlertBannerComponent` (info/warning/error/success, role="alert" aria-live="polite", dismissible, content projection). All declared/exported in `BoaDesignSystemModule`.
 
 ---
 
@@ -312,8 +312,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created 3 components: `DataTableComponent` (wraps mat-table with MatSort/MatPaginator, column config with text/currency/date types, loading skeleton rows, empty state, row click, OnPush, MatTableDataSource), `DialogWrapperComponent` (wraps MatDialogRef, aria-labelledby, header/body/footer, confirm/cancel/close, content projection), `FormFieldComponent` (wraps mat-form-field outline appearance, label/hint/mat-error, FormControl input, currency $ prefix, password/masked toggle visibility, error messages for required/minlength/maxlength/pattern/min/max/email).
 
 ---
 
@@ -336,8 +336,8 @@
   ```bash
   npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created 5 components: `LoadingSkeletonComponent` (card/table/text variants, CSS shimmer animation, configurable row count), `EmptyStateComponent` (icon, title, body, optional CTA button), `StepperComponent` (wraps mat-horizontal-stepper/mat-vertical-stepper, linear mode, BoA navy/success step icon colors, content projection for mat-step), `GlobalHeaderComponent` (mat-toolbar, BoA logo, hamburger menu, search, notification badge, user menu with avatar/initial, sign-out, responsive via BreakpointObserver), `SideNavComponent` (mat-nav-list, routerLink/routerLinkActive, collapsed state icons-only, active navy-blue left border, NavItem interface exported). All declared/exported in `BoaDesignSystemModule`. `BoaDesignSystemModule` imported in `AppModule` and `LayoutModule`. `npx ng build digital-banking-app` exits 0.
 
 ---
 
@@ -806,7 +806,7 @@
 | 2. Angular 14 Dependencies | 2.1, 2.2 | `[x]` |
 | 3. Main App Shell | 3.1, 3.2, 3.3 | `[x]` |
 | 4. Auth/MFA Flows | 4.1, 4.2, 4.3 | `[x]` |
-| 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[ ]` |
+| 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[x]` |
 | 6. Financial Data Mocks | 6.1, 6.2 | `[ ]` |
 | 7. Analytics/Audit Logging | 7.1, 7.2 | `[ ]` |
 | 8. Banking Pages | 8.1, 8.2, 8.3, 8.4, 8.5, 8.6 | `[ ]` |

@@ -1,0 +1,45 @@
+@import 'variables';
+
+:host {
+  display: block;
+}
+
+::ng-deep .boa-stepper {
+  .mat-step-icon {
+    background-color: $boa-gray-300;
+  }
+
+  .mat-step-icon-selected,
+  .mat-step-icon-state-edit {
+    background-color: $boa-navy-blue;
+  }
+
+  .mat-step-icon-state-done {
+    background-color: $boa-success;
+  }
+
+  .mat-step-label {
+    font-weight: 500;
+    color: $boa-gray-600;
+  }
+
+  .mat-step-label-selected {
+    font-weight: 600;
+    color: $boa-navy-blue;
+  }
+
+  .mat-stepper-horizontal-line {
+    border-top-color: $boa-gray-200;
+  }
+
+  .mat-step-header {
+    &:hover {
+      background-color: rgba($boa-navy-blue, 0.04);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $boa-sky-blue;
+      outline-offset: 2px;
+    }
+  }
+}

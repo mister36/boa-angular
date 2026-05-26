@@ -1,0 +1,19 @@
+<mat-card class="account-card" (click)="onClick()" tabindex="0" role="button"
+          [attr.aria-label]="accountName + ' account ending in ' + maskedNumber">
+  <mat-card-header>
+    <mat-icon mat-card-avatar class="account-card__icon">{{ accountIcon }}</mat-icon>
+    <mat-card-title class="account-card__name">{{ accountName }}</mat-card-title>
+    <mat-card-subtitle class="account-card__number">{{ maskedNumber }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="account-card__content">
+    <div class="account-card__balance">
+      <span class="account-card__balance-label">Available Balance</span>
+      <boa-money-display [amount]="balance" [showSign]="accountType === 'credit'"></boa-money-display>
+    </div>
+
+    <span class="status-badge" [ngClass]="statusClass">
+      {{ status | titlecase }}
+    </span>
+  </mat-card-content>
+</mat-card>

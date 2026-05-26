@@ -1,0 +1,12 @@
+<div class="empty-state">
+  <mat-icon class="empty-state__icon">{{ icon }}</mat-icon>
+  <h3 class="empty-state__title">{{ title }}</h3>
+  <p class="empty-state__body" *ngIf="body">{{ body }}</p>
+  <button *ngIf="ctaLabel"
+          mat-raised-button
+          color="primary"
+          class="empty-state__cta"
+          (click)="onCtaClick()">
+    {{ ctaLabel }}
+  </button>
+</div>

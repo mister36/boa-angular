@@ -1,0 +1,25 @@
+<mat-form-field appearance="outline" class="boa-form-field">
+  <mat-label>{{ label }}</mat-label>
+
+  <span *ngIf="prefixSymbol" matPrefix class="boa-form-field__prefix">{{ prefixSymbol }}&nbsp;</span>
+
+  <input matInput
+         [type]="inputType"
+         [formControl]="control"
+         [required]="required">
+
+  <button *ngIf="showToggle"
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="toggleVisibility()"
+          [attr.aria-label]="passwordVisible ? 'Hide value' : 'Show value'">
+    <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+  </button>
+
+  <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+
+  <mat-error *ngIf="control.invalid">
+    {{ getErrorMessage() }}
+  </mat-error>
+</mat-form-field>

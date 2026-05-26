@@ -1,0 +1,31 @@
+<div class="dialog-wrapper" role="dialog" aria-labelledby="dialogTitle">
+  <div class="dialog-wrapper__header">
+    <h2 id="dialogTitle" mat-dialog-title class="dialog-wrapper__title">{{ title }}</h2>
+    <button *ngIf="showClose"
+            mat-icon-button
+            class="dialog-wrapper__close"
+            (click)="onClose()"
+            aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content class="dialog-wrapper__body">
+    <ng-content></ng-content>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-wrapper__actions" align="end">
+    <button *ngIf="showCancel"
+            mat-stroked-button
+            (click)="onCancel()"
+            class="dialog-wrapper__cancel">
+      {{ cancelLabel }}
+    </button>
+    <button mat-raised-button
+            color="primary"
+            (click)="onConfirm()"
+            class="dialog-wrapper__confirm">
+      {{ confirmLabel }}
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,102 @@
+@import 'variables';
+@import 'mixins';
+
+.data-table-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: $border-radius-md;
+  background: $boa-bg-primary;
+  @include boa-elevation(1);
+}
+
+.data-table-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+
+  .mat-header-cell {
+    font-weight: 600;
+    color: $boa-gray-800;
+    background-color: $boa-gray-50;
+    padding: $spacing-sm $spacing-md;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .mat-cell {
+    padding: $spacing-sm $spacing-md;
+    color: $boa-gray-800;
+    border-bottom-color: $boa-gray-100;
+  }
+
+  &__row {
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: rgba($boa-navy-blue, 0.03);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}
+
+.data-table-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-3xl $spacing-md;
+
+  &__icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: $boa-gray-300;
+    margin-bottom: $spacing-md;
+  }
+
+  &__message {
+    color: $boa-gray-500;
+    font-size: 14px;
+  }
+}
+
+.data-table-loading {
+  padding: 0;
+}
+
+.skeleton-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: $spacing-sm $spacing-md;
+  }
+
+  th {
+    background-color: $boa-gray-50;
+  }
+}
+
+.skeleton-cell {
+  height: 16px;
+  background: linear-gradient(90deg, $boa-gray-100 25%, $boa-gray-50 50%, $boa-gray-100 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: $border-radius-sm;
+
+  &.skeleton-header {
+    width: 60%;
+    height: 12px;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

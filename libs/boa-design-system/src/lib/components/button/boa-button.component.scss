@@ -1,0 +1,56 @@
+@import 'variables';
+
+:host {
+  display: inline-block;
+}
+
+.boa-btn {
+  position: relative;
+  min-width: 120px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: $border-radius-sm;
+
+  &__icon {
+    margin-right: $spacing-xs;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &__spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__label--hidden {
+    visibility: hidden;
+  }
+
+  &--primary {
+    background-color: $boa-navy-blue;
+
+    &:hover:not([disabled]) {
+      background-color: darken($boa-navy-blue, 5%);
+    }
+  }
+
+  &--secondary {
+    color: $boa-navy-blue;
+    border-color: $boa-navy-blue;
+
+    &:hover:not([disabled]) {
+      background-color: rgba($boa-navy-blue, 0.04);
+    }
+  }
+
+  &--tertiary {
+    color: $boa-navy-blue;
+
+    &:hover:not([disabled]) {
+      background-color: rgba($boa-navy-blue, 0.04);
+    }
+  }
+}

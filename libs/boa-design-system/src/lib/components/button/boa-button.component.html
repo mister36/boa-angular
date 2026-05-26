@@ -1,0 +1,40 @@
+<ng-container [ngSwitch]="variant">
+  <button
+    *ngSwitchCase="'primary'"
+    mat-raised-button
+    color="primary"
+    [disabled]="isDisabled"
+    class="boa-btn boa-btn--primary">
+    <mat-icon *ngIf="icon && !loading" class="boa-btn__icon">{{ icon }}</mat-icon>
+    <mat-spinner *ngIf="loading" diameter="20" class="boa-btn__spinner"></mat-spinner>
+    <span class="boa-btn__label" [class.boa-btn__label--hidden]="loading">
+      <ng-content></ng-content>
+    </span>
+  </button>
+
+  <button
+    *ngSwitchCase="'secondary'"
+    mat-stroked-button
+    color="primary"
+    [disabled]="isDisabled"
+    class="boa-btn boa-btn--secondary">
+    <mat-icon *ngIf="icon && !loading" class="boa-btn__icon">{{ icon }}</mat-icon>
+    <mat-spinner *ngIf="loading" diameter="20" class="boa-btn__spinner"></mat-spinner>
+    <span class="boa-btn__label" [class.boa-btn__label--hidden]="loading">
+      <ng-content></ng-content>
+    </span>
+  </button>
+
+  <button
+    *ngSwitchDefault
+    mat-button
+    color="primary"
+    [disabled]="isDisabled"
+    class="boa-btn boa-btn--tertiary">
+    <mat-icon *ngIf="icon && !loading" class="boa-btn__icon">{{ icon }}</mat-icon>
+    <mat-spinner *ngIf="loading" diameter="20" class="boa-btn__spinner"></mat-spinner>
+    <span class="boa-btn__label" [class.boa-btn__label--hidden]="loading">
+      <ng-content></ng-content>
+    </span>
+  </button>
+</ng-container>

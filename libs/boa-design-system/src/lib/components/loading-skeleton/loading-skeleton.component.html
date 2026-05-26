@@ -1,0 +1,31 @@
+<div class="skeleton" [ngClass]="'skeleton--' + variant" aria-hidden="true">
+  <!-- Card variant -->
+  <ng-container *ngIf="variant === 'card'">
+    <div class="skeleton-card">
+      <div class="skeleton-line skeleton-line--header"></div>
+      <div class="skeleton-line skeleton-line--medium"></div>
+      <div class="skeleton-line skeleton-line--short"></div>
+    </div>
+  </ng-container>
+
+  <!-- Table variant -->
+  <ng-container *ngIf="variant === 'table'">
+    <div class="skeleton-table">
+      <div class="skeleton-table__header">
+        <div *ngFor="let col of columns" class="skeleton-line skeleton-line--cell-header"></div>
+      </div>
+      <div *ngFor="let row of rowArray" class="skeleton-table__row">
+        <div *ngFor="let col of columns" class="skeleton-line skeleton-line--cell"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Text variant -->
+  <ng-container *ngIf="variant === 'text'">
+    <div class="skeleton-text">
+      <div *ngFor="let row of rowArray; let i = index"
+           class="skeleton-line"
+           [style.width]="getTextWidth(i)"></div>
+    </div>
+  </ng-container>
+</div>

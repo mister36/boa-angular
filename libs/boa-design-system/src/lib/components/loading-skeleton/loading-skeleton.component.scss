@@ -1,0 +1,84 @@
+@import 'variables';
+
+.skeleton {
+  width: 100%;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-bottom: $spacing-sm;
+  background: linear-gradient(90deg, $boa-gray-100 25%, $boa-gray-50 50%, $boa-gray-100 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: $border-radius-sm;
+
+  &--header {
+    height: 20px;
+    width: 60%;
+    margin-bottom: $spacing-md;
+  }
+
+  &--medium {
+    width: 80%;
+  }
+
+  &--short {
+    width: 40%;
+  }
+
+  &--cell-header {
+    height: 12px;
+    width: 70%;
+  }
+
+  &--cell {
+    height: 14px;
+    width: 85%;
+  }
+}
+
+.skeleton-card {
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  background: $boa-bg-primary;
+  box-shadow: $elevation-1;
+}
+
+.skeleton-table {
+  border-radius: $border-radius-md;
+  background: $boa-bg-primary;
+  box-shadow: $elevation-1;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-sm $spacing-md;
+    background-color: $boa-gray-50;
+  }
+
+  &__row {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-sm $spacing-md;
+    border-bottom: 1px solid $boa-gray-100;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__header > .skeleton-line,
+  &__row > .skeleton-line {
+    flex: 1;
+  }
+}
+
+.skeleton-text {
+  padding: $spacing-sm 0;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

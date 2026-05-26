@@ -1,0 +1,37 @@
+@import 'variables';
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3xl $spacing-md;
+  text-align: center;
+
+  &__icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: $boa-gray-300;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: $boa-gray-800;
+    margin: 0 0 $spacing-sm;
+  }
+
+  &__body {
+    font-size: 14px;
+    color: $boa-gray-500;
+    margin: 0 0 $spacing-lg;
+    max-width: 400px;
+    line-height: 1.6;
+  }
+
+  &__cta {
+    min-width: 160px;
+  }
+}

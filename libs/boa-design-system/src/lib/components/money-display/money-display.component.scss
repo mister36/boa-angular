@@ -1,0 +1,17 @@
+@import 'variables';
+
+.money-display {
+  font-weight: 600;
+  font-size: 20px;
+  color: $boa-gray-900;
+  font-variant-numeric: tabular-nums;
+
+  &--negative {
+    color: $boa-error;
+  }
+
+  &--masked {
+    letter-spacing: 0.1em;
+    color: $boa-gray-500;
+  }
+}

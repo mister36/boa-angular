@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { BoaDesignSystemModule } from '@boa/design-system';
+
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
@@ -50,7 +52,8 @@ import {
     MatMenuModule,
     MatButtonModule,
     MatBadgeModule,
-    MatDividerModule
+    MatDividerModule,
+    BoaDesignSystemModule
   ]
 })
 export class LayoutModule {}

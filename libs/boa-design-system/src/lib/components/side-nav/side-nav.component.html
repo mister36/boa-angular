@@ -1,0 +1,14 @@
+<nav class="side-nav" [class.side-nav--collapsed]="collapsed" aria-label="Main navigation">
+  <mat-nav-list>
+    <a mat-list-item
+       *ngFor="let item of navItems"
+       [routerLink]="item.route"
+       routerLinkActive="side-nav__item--active"
+       class="side-nav__item"
+       (click)="onItemClick(item)"
+       [attr.title]="collapsed ? item.label : null">
+      <mat-icon matListIcon class="side-nav__icon">{{ item.icon }}</mat-icon>
+      <span *ngIf="!collapsed" matLine class="side-nav__label">{{ item.label }}</span>
+    </a>
+  </mat-nav-list>
+</nav>

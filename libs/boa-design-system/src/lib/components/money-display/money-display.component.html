@@ -1,0 +1,6 @@
+<span class="money-display"
+      [class.money-display--negative]="isNegative"
+      [class.money-display--masked]="masked"
+      [attr.aria-label]="masked ? 'Balance hidden' : formattedAmount">
+  {{ formattedAmount }}
+</span>
