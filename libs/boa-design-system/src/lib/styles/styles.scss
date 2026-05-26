@@ -1,0 +1,27 @@
+@import 'theme';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $boa-font-family;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $boa-gray-900;
+  background-color: $boa-bg-secondary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: $boa-light-blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

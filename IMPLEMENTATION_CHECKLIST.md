@@ -70,8 +70,8 @@
   npx ng version
   npm ls @angular/core @angular/material rxjs zone.js
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Installed `@angular/material@14.2.7` and `@angular/cdk@14.2.7`. All Angular packages at 14.3.0, RxJS 7.5.7, Zone.js 0.11.8, TypeScript 4.7.4. Karma/Jasmine already present from Phase 1. No peer dep conflicts.
 
 ---
 
@@ -89,8 +89,8 @@
   ```bash
   npx ng build digital-banking-app --configuration=production 2>&1 | tail -5
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `libs/boa-design-system/src/lib/styles/` with `_variables.scss` (BoA navy #012169 + red #E31837 palettes, grays, spacing, elevation, breakpoints), `_typography.scss` (custom mat-typography-config), `_theme.scss` (pre-MDC API: mat-core, mat-palette, mat-light-theme, angular-material-theme), and `styles.scss` aggregator. Theme will be wired into `angular.json` styles array in Phase 3 when the app is generated. `npx tsc --noEmit` exits 0.
 
 ---
 
@@ -803,7 +803,7 @@
 | Phase | Tasks | Status |
 |-------|-------|--------|
 | 1. Workspace Setup | 1.1, 1.2 | `[x]` |
-| 2. Angular 14 Dependencies | 2.1, 2.2 | `[ ]` |
+| 2. Angular 14 Dependencies | 2.1, 2.2 | `[x]` |
 | 3. Main App Shell | 3.1, 3.2, 3.3 | `[ ]` |
 | 4. Auth/MFA Flows | 4.1, 4.2, 4.3 | `[ ]` |
 | 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[ ]` |

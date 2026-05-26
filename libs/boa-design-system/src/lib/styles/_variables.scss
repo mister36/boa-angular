@@ -1,0 +1,126 @@
+// Bank of America brand color palette
+
+$boa-navy-blue: #012169;
+$boa-red: #E31837;
+$boa-dark-red: #B3001B;
+$boa-light-blue: #0056B3;
+$boa-sky-blue: #418FDE;
+
+// Neutral grays
+$boa-gray-900: #1A1A1A;
+$boa-gray-800: #333333;
+$boa-gray-700: #4D4D4D;
+$boa-gray-600: #666666;
+$boa-gray-500: #808080;
+$boa-gray-400: #999999;
+$boa-gray-300: #B3B3B3;
+$boa-gray-200: #CCCCCC;
+$boa-gray-100: #E6E6E6;
+$boa-gray-50: #F5F5F5;
+
+// Functional colors
+$boa-success: #2E7D32;
+$boa-warning: #F57C00;
+$boa-error: #D32F2F;
+$boa-info: #0288D1;
+
+// Background colors
+$boa-bg-primary: #FFFFFF;
+$boa-bg-secondary: $boa-gray-50;
+$boa-bg-tertiary: $boa-gray-100;
+
+// Spacing scale (8px base)
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-pill: 9999px;
+
+// Elevation / shadows
+$elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+$elevation-2: 0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+$elevation-3: 0 10px 20px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);
+$elevation-4: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1440px;
+
+// Angular Material custom palette definitions (mat-palette compatible maps)
+
+$boa-navy-palette: (
+  50: #E3E8F0,
+  100: #B8C5D9,
+  200: #899FBF,
+  300: #5A79A5,
+  400: #365C91,
+  500: $boa-navy-blue,
+  600: #011D5F,
+  700: #011854,
+  800: #01134A,
+  900: #000B39,
+  A100: #7088FF,
+  A200: #3D5CFF,
+  A400: #0A30FF,
+  A700: #0024F0,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #FFFFFF,
+    400: #FFFFFF,
+    500: #FFFFFF,
+    600: #FFFFFF,
+    700: #FFFFFF,
+    800: #FFFFFF,
+    900: #FFFFFF,
+    A100: #000000,
+    A200: #FFFFFF,
+    A400: #FFFFFF,
+    A700: #FFFFFF,
+  )
+);
+
+$boa-red-palette: (
+  50: #FCE4E7,
+  100: #F7BBC3,
+  200: #F28E9B,
+  300: #ED6173,
+  400: #E93F55,
+  500: $boa-red,
+  600: #D01531,
+  700: #C41129,
+  800: #B80E22,
+  900: #A10816,
+  A100: #FF8A8A,
+  A200: #FF5757,
+  A400: #FF2424,
+  A700: #FF0A0A,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #FFFFFF,
+    500: #FFFFFF,
+    600: #FFFFFF,
+    700: #FFFFFF,
+    800: #FFFFFF,
+    900: #FFFFFF,
+    A100: #000000,
+    A200: #000000,
+    A400: #FFFFFF,
+    A700: #FFFFFF,
+  )
+);
