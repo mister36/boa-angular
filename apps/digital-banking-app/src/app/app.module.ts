@@ -11,6 +11,9 @@ import {
   SessionTimeoutInterceptor
 } from '@boa/auth';
 import { BoaDesignSystemModule } from '@boa/design-system';
+import { FinancialDataModule } from '@boa/financial-data';
+import { SharedUtilsModule } from '@boa/shared-utils';
+import { FeatureFlagsModule } from '@boa/feature-flags';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +28,9 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     AuthModule,
     BoaDesignSystemModule,
+    FinancialDataModule,
+    SharedUtilsModule,
+    FeatureFlagsModule,
     AppRoutingModule
   ],
   providers: [

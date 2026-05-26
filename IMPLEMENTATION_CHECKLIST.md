@@ -365,8 +365,8 @@
   ```bash
   npx tsc --noEmit && npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `libs/financial-data/` with `FinancialDataModule`, 4 model files (account, transaction, transfer, provider-error), 3 mock data files (5 accounts, 28 transactions, 8 payees), and 5 services: `AccountApiClient` (getAccounts/getAccountById/getBalance with simulated latency and provider outage), `TransactionApiClient` (getTransactions/filter/export with date/category/amount filtering), `TransferApiClient` (validateTransfer/submitTransfer with insufficient funds/timeout simulation), `BillPayApiClient` (getPayees/addPayee/submitPayment), `ProviderErrorMapper` (maps 13 error codes to user-friendly messages). All services return Observables with simulated 200-800ms latency. Special trigger values: account `ERROR-001` causes provider timeout, amount `99999` causes insufficient funds, amount `88888` causes timeout. `npx tsc --noEmit` and `npx ng build digital-banking-app` both exit 0.
 
 ---
 
@@ -392,8 +392,8 @@
   ```bash
   npx tsc --noEmit && npx ng build digital-banking-app
   ```
-- **Status:** `[ ]`
-- **Notes:**
+- **Status:** `[x]`
+- **Notes:** Created `libs/shared-utils/` with `SharedUtilsModule` and utilities: `formatCurrency`/`parseCurrency` (locale-aware, compact $1.2K, masked ****), `formatDate`/`formatRelativeDate`/`parseISODate` (short/medium/long/iso styles), `maskAccountNumber`/`maskRoutingNumber`/`maskCreditCardNumber` (****XXXX pattern), `redactEmail`/`redactPhone`/`redactSsn`/`redactPii` (recursive PII detection by key name and regex), `generateCorrelationId` (UUID v4-like), `normalizeError`/`isNetworkError`/`isHttpError`, `EnvironmentConfigService` (injectable config with apiBaseUrl, sessionTimeout, etc.). Created `libs/feature-flags/` with `FeatureFlagsModule`, `FeatureFlagService` (BehaviorSubject-based, 8 default flags including new-transfer-flow/provider-fallback/angular18-migrated-behavior), `FeatureFlagDirective` (*boaFeatureFlag structural directive with else template support). All imported in `AppModule`. `npx tsc --noEmit` and `npx ng build digital-banking-app` both exit 0.
 
 ---
 
@@ -807,7 +807,7 @@
 | 3. Main App Shell | 3.1, 3.2, 3.3 | `[x]` |
 | 4. Auth/MFA Flows | 4.1, 4.2, 4.3 | `[x]` |
 | 5. Design System Library | 5.1, 5.2, 5.3, 5.4 | `[x]` |
-| 6. Financial Data Mocks | 6.1, 6.2 | `[ ]` |
+| 6. Financial Data Mocks | 6.1, 6.2 | `[x]` |
 | 7. Analytics/Audit Logging | 7.1, 7.2 | `[ ]` |
 | 8. Banking Pages | 8.1, 8.2, 8.3, 8.4, 8.5, 8.6 | `[ ]` |
 | 9. Downstream Apps | 9.1, 9.2 | `[ ]` |
