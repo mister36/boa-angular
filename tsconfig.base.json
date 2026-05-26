@@ -1,0 +1,50 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2020",
+    "module": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "paths": {
+      "@boa/auth": ["libs/auth/src/index.ts"],
+      "@boa/auth/*": ["libs/auth/src/*"],
+      "@boa/design-system": ["libs/boa-design-system/src/index.ts"],
+      "@boa/design-system/*": ["libs/boa-design-system/src/*"],
+      "@boa/analytics": ["libs/analytics/src/index.ts"],
+      "@boa/analytics/*": ["libs/analytics/src/*"],
+      "@boa/financial-data": ["libs/financial-data/src/index.ts"],
+      "@boa/financial-data/*": ["libs/financial-data/src/*"],
+      "@boa/audit-logging": ["libs/audit-logging/src/index.ts"],
+      "@boa/audit-logging/*": ["libs/audit-logging/src/*"],
+      "@boa/feature-flags": ["libs/feature-flags/src/index.ts"],
+      "@boa/feature-flags/*": ["libs/feature-flags/src/*"],
+      "@boa/shared-utils": ["libs/shared-utils/src/index.ts"],
+      "@boa/shared-utils/*": ["libs/shared-utils/src/*"],
+      "@boa/testing": ["libs/testing/src/index.ts"],
+      "@boa/testing/*": ["libs/testing/src/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
