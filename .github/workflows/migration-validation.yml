@@ -1,0 +1,32 @@
+name: Migration Validation
+
+on:
+  push:
+    branches:
+      - main
+      - migration/angular18-demo
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Validate builds
+        run: npm run validate:builds
+
+      - name: Unit tests
+        run: npm run test:ci
+
+      - name: E2E tests
+        run: |
+          npx ng serve digital-banking-app --configuration production --port 4200 &
+          npx wait-on http://localhost:4200 --timeout 120000
+          npm run e2e

@@ -7,9 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "build:app": "ng build digital-banking-app --configuration production",
+    "build:credit-card": "ng build downstream-credit-card-app --configuration production",
+    "build:loans": "ng build downstream-loans-app --configuration production",
+    "build:design-system": "tsc --project libs/boa-design-system/tsconfig.lib.json --noEmit",
+    "validate:builds": "npm run build:design-system && npm run build:app && npm run build:credit-card && npm run build:loans",
+    "test:ci": "ng test digital-banking-app --browsers=ChromeHeadless --watch=false",
     "e2e": "cypress run --headless",
-    "e2e:open": "cypress open",
-    "validate:builds": "ng build digital-banking-app && ng build downstream-credit-card-app && ng build downstream-loans-app"
+    "e2e:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +53,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "prettier": "^3.8.3",
-    "typescript": "~4.7.2"
+    "typescript": "~4.7.2",
+    "wait-on": "^7.2.0"
   }
 }
