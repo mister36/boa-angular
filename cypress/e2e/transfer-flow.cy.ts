@@ -1,4 +1,6 @@
 describe('Transfer Flow', () => {
+  const activeStep = () => cy.get('.mat-horizontal-stepper-content').filter(':visible');
+
   beforeEach(() => {
     cy.login();
   });
@@ -12,43 +14,43 @@ describe('Transfer Flow', () => {
     cy.contains('Transfers').click();
 
     // Step 1: Select source account
-    cy.get('mat-select[formControlName="sourceAccountId"]').click();
-    cy.get('mat-option').first().click();
-    cy.contains('Next').click();
+    activeStep().find('mat-select[formControlName="sourceAccountId"]').click();
+    cy.get('.cdk-overlay-container mat-option').first().click();
+    cy.clickStepperNext('Next');
 
     // Step 2: Select destination account
-    cy.get('mat-select[formControlName="destinationAccountId"]').click();
-    cy.get('mat-option').first().click();
-    cy.contains('Next').click();
+    activeStep().find('mat-select[formControlName="destinationAccountId"]').click();
+    cy.get('.cdk-overlay-container mat-option').first().click();
+    cy.clickStepperNext('Next');
 
     // Step 3: Enter amount
-    cy.get('input[formControlName="amount"]').type('100');
-    cy.contains('Next').click();
+    activeStep().find('input[formControlName="amount"]').type('100');
+    cy.clickStepperNext('Next');
 
     // Step 4: Review
-    cy.contains('Review').should('be.visible');
-    cy.contains('Next').click();
+    cy.contains('Review Transfer').should('be.visible');
+    cy.clickStepperNext('Continue to Confirm');
 
     // Step 5: Confirm
-    cy.contains('Confirm').click();
+    activeStep().contains('button', 'Confirm Transfer').click();
 
     // Step 6: Success receipt
-    cy.contains('confirmation', { matchCase: false }).should('be.visible');
+    cy.contains('Transfer Successful!').should('be.visible');
+    cy.contains('Confirmation Number').should('be.visible');
   });
 
   it('should show validation error for zero amount', () => {
     cy.contains('Transfers').click();
 
-    cy.get('mat-select[formControlName="sourceAccountId"]').click();
-    cy.get('mat-option').first().click();
-    cy.contains('Next').click();
+    activeStep().find('mat-select[formControlName="sourceAccountId"]').click();
+    cy.get('.cdk-overlay-container mat-option').first().click();
+    cy.clickStepperNext('Next');
 
-    cy.get('mat-select[formControlName="destinationAccountId"]').click();
-    cy.get('mat-option').first().click();
-    cy.contains('Next').click();
+    activeStep().find('mat-select[formControlName="destinationAccountId"]').click();
+    cy.get('.cdk-overlay-container mat-option').first().click();
+    cy.clickStepperNext('Next');
 
-    cy.get('input[formControlName="amount"]').type('0');
-    cy.get('input[formControlName="amount"]').blur();
-    cy.contains('greater than zero').should('be.visible');
+    activeStep().find('input[formControlName="amount"]').type('0').blur();
+    activeStep().contains('greater than zero').should('be.visible');
   });
 });

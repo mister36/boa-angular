@@ -1,8 +1,19 @@
 declare namespace Cypress {
   interface Chainable {
     login(username?: string, password?: string): Chainable<void>;
+    clickStepperNext(label?: string | RegExp): Chainable<void>;
   }
 }
+
+/** Clicks a stepper action button in the active (visible) step only. */
+Cypress.Commands.add('clickStepperNext', (label: string | RegExp = 'Next') => {
+  cy.get('.step-actions')
+    .filter(':visible')
+    .contains('button', label)
+    .should('be.visible')
+    .should('not.be.disabled')
+    .click();
+});
 
 Cypress.Commands.add('login', (username = 'testuser', password = 'password123') => {
   cy.visit('/login');
