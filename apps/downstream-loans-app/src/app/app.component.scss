@@ -1,17 +1,17 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables' as vars;
+@use 'mixins';
 
 .loans-app {
   min-height: 100vh;
-  background-color: $boa-bg-secondary;
+  background-color: vars.$boa-bg-secondary;
 }
 
 .loans-header {
   display: flex;
   align-items: center;
-  gap: $spacing-md;
-  padding: $spacing-lg $spacing-xl;
-  background-color: $boa-navy-blue;
+  gap: vars.$spacing-md;
+  padding: vars.$spacing-lg vars.$spacing-xl;
+  background-color: vars.$boa-navy-blue;
   color: white;
 
   &__logo-icon {
@@ -41,25 +41,25 @@
 .loans-content {
   max-width: 1000px;
   margin: 0 auto;
-  padding: $spacing-lg;
+  padding: vars.$spacing-lg;
 }
 
 .loans-section-title {
   font-size: 18px;
   font-weight: 500;
-  color: $boa-navy-blue;
-  margin: $spacing-lg 0 $spacing-md;
-  padding-bottom: $spacing-xs;
-  border-bottom: 2px solid $boa-navy-blue;
+  color: vars.$boa-navy-blue;
+  margin: vars.$spacing-lg 0 vars.$spacing-md;
+  padding-bottom: vars.$spacing-xs;
+  border-bottom: 2px solid vars.$boa-navy-blue;
 }
 
 .loans-summary {
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $spacing-lg;
+    gap: vars.$spacing-lg;
 
-    @include respond-below(md) {
+    @include mixins.respond-below(md) {
       grid-template-columns: 1fr;
     }
   }
@@ -67,12 +67,12 @@
   &__details {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $spacing-sm $spacing-lg;
+    gap: vars.$spacing-sm vars.$spacing-lg;
     align-content: start;
     background: white;
-    border-radius: $border-radius-md;
-    padding: $spacing-md;
-    @include boa-elevation(1);
+    border-radius: vars.$border-radius-md;
+    padding: vars.$spacing-md;
+    @include mixins.boa-elevation(1);
   }
 
   &__detail-item {
@@ -83,7 +83,7 @@
 
   &__label {
     font-size: 12px;
-    color: $boa-gray-500;
+    color: vars.$boa-gray-500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -91,10 +91,10 @@
   &__value {
     font-size: 16px;
     font-weight: 500;
-    color: $boa-gray-900;
+    color: vars.$boa-gray-900;
   }
 }
 
 .loans-schedule {
-  margin-top: $spacing-md;
+  margin-top: vars.$spacing-md;
 }

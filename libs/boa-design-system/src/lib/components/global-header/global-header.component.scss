@@ -1,15 +1,15 @@
-@import 'variables';
+@use 'variables' as vars;
 
 .global-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: $boa-navy-blue;
+  background-color: vars.$boa-navy-blue;
 
   &__logo {
     display: flex;
     align-items: center;
-    margin-left: $spacing-sm;
+    margin-left: vars.$spacing-sm;
   }
 
   &__logo-text {
@@ -27,15 +27,15 @@
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.15);
-    border-radius: $border-radius-pill;
-    padding: $spacing-xs $spacing-sm;
-    margin-right: $spacing-sm;
+    border-radius: vars.$border-radius-pill;
+    padding: vars.$spacing-xs vars.$spacing-sm;
+    margin-right: vars.$spacing-sm;
   }
 
   &__search-icon {
     color: rgba(255, 255, 255, 0.7);
     font-size: 20px;
-    margin-right: $spacing-xs;
+    margin-right: vars.$spacing-xs;
   }
 
   &__search-input {
@@ -56,7 +56,7 @@
     text-transform: none;
     display: flex;
     align-items: center;
-    gap: $spacing-xs;
+    gap: vars.$spacing-xs;
   }
 
   &__avatar {

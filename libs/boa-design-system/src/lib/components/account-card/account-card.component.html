@@ -1,7 +1,7 @@
 <mat-card class="account-card" (click)="onClick()" tabindex="0" role="button"
           [attr.aria-label]="accountName + ' account ending in ' + maskedNumber">
   <mat-card-header>
-    <mat-icon mat-card-avatar class="account-card__icon">{{ accountIcon }}</mat-icon>
+    <mat-icon matCardAvatar class="account-card__icon">{{ accountIcon }}</mat-icon>
     <mat-card-title class="account-card__name">{{ accountName }}</mat-card-title>
     <mat-card-subtitle class="account-card__number">{{ maskedNumber }}</mat-card-subtitle>
   </mat-card-header>

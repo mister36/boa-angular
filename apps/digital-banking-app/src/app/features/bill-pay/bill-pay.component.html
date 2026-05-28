@@ -26,7 +26,7 @@
       <div class="payee-grid" *ngIf="payees.length > 0">
         <mat-card *ngFor="let payee of payees" class="payee-card" (click)="selectPayee(payee)">
           <mat-card-header>
-            <mat-icon mat-card-avatar>payment</mat-icon>
+            <mat-icon matCardAvatar>payment</mat-icon>
             <mat-card-title>{{ payee.nickname || payee.name }}</mat-card-title>
             <mat-card-subtitle>{{ payee.name }}</mat-card-subtitle>
           </mat-card-header>

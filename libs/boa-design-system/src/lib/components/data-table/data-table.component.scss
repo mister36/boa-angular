@@ -1,12 +1,12 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables' as vars;
+@use 'mixins';
 
 .data-table-container {
   width: 100%;
   overflow: hidden;
-  border-radius: $border-radius-md;
-  background: $boa-bg-primary;
-  @include boa-elevation(1);
+  border-radius: vars.$border-radius-md;
+  background: vars.$boa-bg-primary;
+  @include mixins.boa-elevation(1);
 }
 
 .data-table-wrapper {
@@ -16,20 +16,20 @@
 .data-table {
   width: 100%;
 
-  .mat-header-cell {
+  .mat-mdc-header-cell {
     font-weight: 600;
-    color: $boa-gray-800;
-    background-color: $boa-gray-50;
-    padding: $spacing-sm $spacing-md;
+    color: vars.$boa-gray-800;
+    background-color: vars.$boa-gray-50;
+    padding: vars.$spacing-sm vars.$spacing-md;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  .mat-cell {
-    padding: $spacing-sm $spacing-md;
-    color: $boa-gray-800;
-    border-bottom-color: $boa-gray-100;
+  .mat-mdc-cell {
+    padding: vars.$spacing-sm vars.$spacing-md;
+    color: vars.$boa-gray-800;
+    border-bottom-color: vars.$boa-gray-100;
   }
 
   &__row {
@@ -37,11 +37,11 @@
     transition: background-color 0.15s ease;
 
     &:hover {
-      background-color: rgba($boa-navy-blue, 0.03);
+      background-color: rgba(vars.$boa-navy-blue, 0.03);
     }
 
     &:focus-visible {
-      @include focus-ring;
+      @include mixins.focus-ring;
     }
   }
 }
@@ -50,18 +50,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: $spacing-3xl $spacing-md;
+  padding: vars.$spacing-3xl vars.$spacing-md;
 
   &__icon {
     font-size: 48px;
     width: 48px;
     height: 48px;
-    color: $boa-gray-300;
-    margin-bottom: $spacing-md;
+    color: vars.$boa-gray-300;
+    margin-bottom: vars.$spacing-md;
   }
 
   &__message {
-    color: $boa-gray-500;
+    color: vars.$boa-gray-500;
     font-size: 14px;
   }
 }
@@ -75,20 +75,20 @@
   border-collapse: collapse;
 
   th, td {
-    padding: $spacing-sm $spacing-md;
+    padding: vars.$spacing-sm vars.$spacing-md;
   }
 
   th {
-    background-color: $boa-gray-50;
+    background-color: vars.$boa-gray-50;
   }
 }
 
 .skeleton-cell {
   height: 16px;
-  background: linear-gradient(90deg, $boa-gray-100 25%, $boa-gray-50 50%, $boa-gray-100 75%);
+  background: linear-gradient(90deg, vars.$boa-gray-100 25%, vars.$boa-gray-50 50%, vars.$boa-gray-100 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: $border-radius-sm;
+  border-radius: vars.$border-radius-sm;
 
   &.skeleton-header {
     width: 60%;

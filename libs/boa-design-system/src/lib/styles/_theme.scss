@@ -1,13 +1,19 @@
-@import '~@angular/material/theming';
-@import 'variables';
-@import 'typography';
+@use '@angular/material' as mat;
+@use 'variables' as vars;
+@use 'typography' as typo;
 
-@include mat-core($boa-typography);
+$boa-primary: mat.m2-define-palette(vars.$boa-navy-palette);
+$boa-accent: mat.m2-define-palette(vars.$boa-red-palette);
+$boa-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-$boa-primary: mat-palette($boa-navy-palette);
-$boa-accent: mat-palette($boa-red-palette);
-$boa-warn: mat-palette($mat-red);
+$boa-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $boa-primary,
+    accent: $boa-accent,
+    warn: $boa-warn,
+  ),
+  typography: typo.$boa-typography,
+  density: 0,
+));
 
-$boa-theme: mat-light-theme($boa-primary, $boa-accent, $boa-warn);
-
-@include angular-material-theme($boa-theme);
+@include mat.all-component-themes($boa-theme);

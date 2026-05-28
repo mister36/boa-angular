@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as vars;
 
 .skeleton {
   width: 100%;
@@ -6,16 +6,16 @@
 
 .skeleton-line {
   height: 14px;
-  margin-bottom: $spacing-sm;
-  background: linear-gradient(90deg, $boa-gray-100 25%, $boa-gray-50 50%, $boa-gray-100 75%);
+  margin-bottom: vars.$spacing-sm;
+  background: linear-gradient(90deg, vars.$boa-gray-100 25%, vars.$boa-gray-50 50%, vars.$boa-gray-100 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: $border-radius-sm;
+  border-radius: vars.$border-radius-sm;
 
   &--header {
     height: 20px;
     width: 60%;
-    margin-bottom: $spacing-md;
+    margin-bottom: vars.$spacing-md;
   }
 
   &--medium {
@@ -38,30 +38,30 @@
 }
 
 .skeleton-card {
-  padding: $spacing-md;
-  border-radius: $border-radius-md;
-  background: $boa-bg-primary;
-  box-shadow: $elevation-1;
+  padding: vars.$spacing-md;
+  border-radius: vars.$border-radius-md;
+  background: vars.$boa-bg-primary;
+  box-shadow: vars.$elevation-1;
 }
 
 .skeleton-table {
-  border-radius: $border-radius-md;
-  background: $boa-bg-primary;
-  box-shadow: $elevation-1;
+  border-radius: vars.$border-radius-md;
+  background: vars.$boa-bg-primary;
+  box-shadow: vars.$elevation-1;
   overflow: hidden;
 
   &__header {
     display: flex;
-    gap: $spacing-md;
-    padding: $spacing-sm $spacing-md;
-    background-color: $boa-gray-50;
+    gap: vars.$spacing-md;
+    padding: vars.$spacing-sm vars.$spacing-md;
+    background-color: vars.$boa-gray-50;
   }
 
   &__row {
     display: flex;
-    gap: $spacing-md;
-    padding: $spacing-sm $spacing-md;
-    border-bottom: 1px solid $boa-gray-100;
+    gap: vars.$spacing-md;
+    padding: vars.$spacing-sm vars.$spacing-md;
+    border-bottom: 1px solid vars.$boa-gray-100;
 
     &:last-child {
       border-bottom: none;
@@ -75,7 +75,7 @@
 }
 
 .skeleton-text {
-  padding: $spacing-sm 0;
+  padding: vars.$spacing-sm 0;
 }
 
 @keyframes shimmer {

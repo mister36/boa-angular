@@ -1,10 +1,10 @@
-@import 'variables';
+@use 'variables' as vars;
 
 .side-nav {
   height: 100%;
-  background-color: $boa-bg-primary;
-  border-right: 1px solid $boa-gray-100;
-  padding-top: $spacing-sm;
+  background-color: vars.$boa-bg-primary;
+  border-right: 1px solid vars.$boa-gray-100;
+  padding-top: vars.$spacing-sm;
   width: 250px;
   transition: width 0.2s ease;
 
@@ -15,7 +15,7 @@
       display: none;
     }
 
-    .mat-list-item {
+    .mat-mdc-list-item {
       justify-content: center;
     }
   }
@@ -26,31 +26,31 @@
     margin-bottom: 2px;
 
     &--active {
-      border-left-color: $boa-navy-blue;
-      background-color: rgba($boa-navy-blue, 0.06);
+      border-left-color: vars.$boa-navy-blue;
+      background-color: rgba(vars.$boa-navy-blue, 0.06);
 
       .side-nav__icon {
-        color: $boa-navy-blue;
+        color: vars.$boa-navy-blue;
       }
 
       .side-nav__label {
-        color: $boa-navy-blue;
+        color: vars.$boa-navy-blue;
         font-weight: 600;
       }
     }
 
     &:hover:not(.side-nav__item--active) {
-      background-color: $boa-gray-50;
+      background-color: vars.$boa-gray-50;
     }
   }
 
   &__icon {
-    color: $boa-gray-600;
+    color: vars.$boa-gray-600;
     transition: color 0.15s ease;
   }
 
   &__label {
-    color: $boa-gray-800;
+    color: vars.$boa-gray-800;
     font-size: 14px;
     transition: color 0.15s ease;
   }
