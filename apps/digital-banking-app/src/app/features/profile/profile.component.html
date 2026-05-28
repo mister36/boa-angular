@@ -4,7 +4,7 @@
   <!-- Profile Info -->
   <mat-card class="section-card">
     <mat-card-header>
-      <mat-icon mat-card-avatar>person</mat-icon>
+      <mat-icon matCardAvatar>person</mat-icon>
       <mat-card-title>Personal Information</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -32,7 +32,7 @@
   <!-- MFA Methods -->
   <mat-card class="section-card">
     <mat-card-header>
-      <mat-icon mat-card-avatar>security</mat-icon>
+      <mat-icon matCardAvatar>security</mat-icon>
       <mat-card-title>Multi-Factor Authentication</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -43,9 +43,9 @@
           </mat-icon>
           <div matListItemTitle>
             {{ method.type | titlecase }}
-            <mat-chip-list *ngIf="method.isPrimary" class="inline-chip">
-              <mat-chip color="primary" selected>Primary</mat-chip>
-            </mat-chip-list>
+            <mat-chip-set *ngIf="method.isPrimary" class="inline-chip">
+              <mat-chip highlighted color="primary">Primary</mat-chip>
+            </mat-chip-set>
           </div>
           <div matListItemLine>{{ method.value }}</div>
         </mat-list-item>
@@ -56,7 +56,7 @@
   <!-- Preferences -->
   <mat-card class="section-card">
     <mat-card-header>
-      <mat-icon mat-card-avatar>settings</mat-icon>
+      <mat-icon matCardAvatar>settings</mat-icon>
       <mat-card-title>Preferences</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -87,7 +87,7 @@
   <!-- Login Activity -->
   <mat-card class="section-card">
     <mat-card-header>
-      <mat-icon mat-card-avatar>history</mat-icon>
+      <mat-icon matCardAvatar>history</mat-icon>
       <mat-card-title>Recent Login Activity</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -130,7 +130,7 @@
   <!-- Trusted Devices -->
   <mat-card class="section-card">
     <mat-card-header>
-      <mat-icon mat-card-avatar>devices</mat-icon>
+      <mat-icon matCardAvatar>devices</mat-icon>
       <mat-card-title>Trusted Devices</mat-card-title>
     </mat-card-header>
     <mat-card-content>

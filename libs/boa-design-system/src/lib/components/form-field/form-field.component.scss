@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as vars;
 
 :host {
   display: block;
@@ -9,25 +9,29 @@
   width: 100%;
 
   &__prefix {
-    color: $boa-gray-600;
+    color: vars.$boa-gray-600;
     font-weight: 500;
   }
 }
 
 ::ng-deep .boa-form-field {
-  .mat-form-field-outline {
-    color: $boa-gray-300;
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: vars.$boa-gray-300;
   }
 
-  &.mat-focused .mat-form-field-outline {
-    color: $boa-navy-blue;
+  &.mat-focused .mdc-notched-outline__leading,
+  &.mat-focused .mdc-notched-outline__notch,
+  &.mat-focused .mdc-notched-outline__trailing {
+    border-color: vars.$boa-navy-blue;
   }
 
-  .mat-form-field-label {
-    color: $boa-gray-600;
+  .mat-mdc-floating-label {
+    color: vars.$boa-gray-600;
   }
 
-  &.mat-focused .mat-form-field-label {
-    color: $boa-navy-blue;
+  &.mat-focused .mat-mdc-floating-label {
+    color: vars.$boa-navy-blue;
   }
 }

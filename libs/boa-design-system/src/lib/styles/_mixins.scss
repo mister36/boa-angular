@@ -1,40 +1,40 @@
-@import 'variables';
+@use 'variables' as vars;
 
 @mixin respond-to($breakpoint) {
   @if $breakpoint == sm {
-    @media (min-width: $breakpoint-sm) { @content; }
+    @media (min-width: vars.$breakpoint-sm) { @content; }
   } @else if $breakpoint == md {
-    @media (min-width: $breakpoint-md) { @content; }
+    @media (min-width: vars.$breakpoint-md) { @content; }
   } @else if $breakpoint == lg {
-    @media (min-width: $breakpoint-lg) { @content; }
+    @media (min-width: vars.$breakpoint-lg) { @content; }
   } @else if $breakpoint == xl {
-    @media (min-width: $breakpoint-xl) { @content; }
+    @media (min-width: vars.$breakpoint-xl) { @content; }
   } @else if $breakpoint == 2xl {
-    @media (min-width: $breakpoint-2xl) { @content; }
+    @media (min-width: vars.$breakpoint-2xl) { @content; }
   }
 }
 
 @mixin respond-below($breakpoint) {
   @if $breakpoint == sm {
-    @media (max-width: $breakpoint-sm - 1) { @content; }
+    @media (max-width: vars.$breakpoint-sm - 1) { @content; }
   } @else if $breakpoint == md {
-    @media (max-width: $breakpoint-md - 1) { @content; }
+    @media (max-width: vars.$breakpoint-md - 1) { @content; }
   } @else if $breakpoint == lg {
-    @media (max-width: $breakpoint-lg - 1) { @content; }
+    @media (max-width: vars.$breakpoint-lg - 1) { @content; }
   } @else if $breakpoint == xl {
-    @media (max-width: $breakpoint-xl - 1) { @content; }
+    @media (max-width: vars.$breakpoint-xl - 1) { @content; }
   }
 }
 
 @mixin boa-elevation($level: 1) {
   @if $level == 1 {
-    box-shadow: $elevation-1;
+    box-shadow: vars.$elevation-1;
   } @else if $level == 2 {
-    box-shadow: $elevation-2;
+    box-shadow: vars.$elevation-2;
   } @else if $level == 3 {
-    box-shadow: $elevation-3;
+    box-shadow: vars.$elevation-3;
   } @else if $level == 4 {
-    box-shadow: $elevation-4;
+    box-shadow: vars.$elevation-4;
   }
 }
 
@@ -45,15 +45,15 @@
 }
 
 @mixin card-base {
-  background: $boa-bg-primary;
-  border-radius: $border-radius-md;
+  background: vars.$boa-bg-primary;
+  border-radius: vars.$border-radius-md;
   @include boa-elevation(1);
-  padding: $spacing-md;
+  padding: vars.$spacing-md;
   transition: box-shadow 0.2s ease;
 }
 
 @mixin focus-ring {
-  outline: 2px solid $boa-sky-blue;
+  outline: 2px solid vars.$boa-sky-blue;
   outline-offset: 2px;
 }
 

@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as vars;
 
 :host {
   display: inline-block;
@@ -9,10 +9,10 @@
   min-width: 120px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  border-radius: $border-radius-sm;
+  border-radius: vars.$border-radius-sm;
 
   &__icon {
-    margin-right: $spacing-xs;
+    margin-right: vars.$spacing-xs;
     font-size: 18px;
     width: 18px;
     height: 18px;
@@ -30,27 +30,27 @@
   }
 
   &--primary {
-    background-color: $boa-navy-blue;
+    background-color: vars.$boa-navy-blue;
 
     &:hover:not([disabled]) {
-      background-color: darken($boa-navy-blue, 5%);
+      background-color: darken(vars.$boa-navy-blue, 5%);
     }
   }
 
   &--secondary {
-    color: $boa-navy-blue;
-    border-color: $boa-navy-blue;
+    color: vars.$boa-navy-blue;
+    border-color: vars.$boa-navy-blue;
 
     &:hover:not([disabled]) {
-      background-color: rgba($boa-navy-blue, 0.04);
+      background-color: rgba(vars.$boa-navy-blue, 0.04);
     }
   }
 
   &--tertiary {
-    color: $boa-navy-blue;
+    color: vars.$boa-navy-blue;
 
     &:hover:not([disabled]) {
-      background-color: rgba($boa-navy-blue, 0.04);
+      background-color: rgba(vars.$boa-navy-blue, 0.04);
     }
   }
 }

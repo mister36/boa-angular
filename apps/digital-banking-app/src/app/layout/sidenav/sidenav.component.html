@@ -4,7 +4,7 @@
      [routerLink]="item.route"
      routerLinkActive="active-link"
      [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }">
-    <mat-icon matListIcon>{{ item.icon }}</mat-icon>
+    <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
     <span matLine>{{ item.label }}</span>
   </a>
 </mat-nav-list>

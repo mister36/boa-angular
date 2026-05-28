@@ -101,10 +101,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "digital-banking-app:build:production"
+              "buildTarget": "digital-banking-app:build:production"
             },
             "development": {
-              "browserTarget": "digital-banking-app:build:development"
+              "buildTarget": "digital-banking-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -112,7 +112,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "digital-banking-app:build"
+            "buildTarget": "digital-banking-app:build"
           }
         },
         "test": {
@@ -223,10 +223,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "downstream-credit-card-app:build:production"
+              "buildTarget": "downstream-credit-card-app:build:production"
             },
             "development": {
-              "browserTarget": "downstream-credit-card-app:build:development"
+              "buildTarget": "downstream-credit-card-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -234,7 +234,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "downstream-credit-card-app:build"
+            "buildTarget": "downstream-credit-card-app:build"
           }
         }
       }
@@ -321,10 +321,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "downstream-loans-app:build:production"
+              "buildTarget": "downstream-loans-app:build:production"
             },
             "development": {
-              "browserTarget": "downstream-loans-app:build:development"
+              "buildTarget": "downstream-loans-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -332,7 +332,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "downstream-loans-app:build"
+            "buildTarget": "downstream-loans-app:build"
           }
         }
       }

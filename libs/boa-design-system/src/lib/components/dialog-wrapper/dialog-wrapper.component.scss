@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as vars;
 
 .dialog-wrapper {
   min-width: 400px;
@@ -8,34 +8,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: $spacing-sm;
-    border-bottom: 1px solid $boa-gray-100;
+    padding-bottom: vars.$spacing-sm;
+    border-bottom: 1px solid vars.$boa-gray-100;
   }
 
   &__title {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
-    color: $boa-gray-900;
+    color: vars.$boa-gray-900;
   }
 
   &__close {
-    color: $boa-gray-500;
+    color: vars.$boa-gray-500;
 
     &:hover {
-      color: $boa-gray-800;
+      color: vars.$boa-gray-800;
     }
   }
 
   &__body {
-    padding: $spacing-md 0;
+    padding: vars.$spacing-md 0;
     max-height: 60vh;
   }
 
   &__actions {
-    padding-top: $spacing-sm;
-    border-top: 1px solid $boa-gray-100;
-    gap: $spacing-sm;
+    padding-top: vars.$spacing-sm;
+    border-top: 1px solid vars.$boa-gray-100;
+    gap: vars.$spacing-sm;
   }
 
   &__confirm {

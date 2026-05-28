@@ -1,39 +1,39 @@
-@import 'variables';
+@use 'variables' as vars;
 
 .alert-banner {
   display: flex;
   align-items: center;
-  padding: $spacing-sm $spacing-md;
-  border-radius: $border-radius-sm;
-  margin-bottom: $spacing-sm;
+  padding: vars.$spacing-sm vars.$spacing-md;
+  border-radius: vars.$border-radius-sm;
+  margin-bottom: vars.$spacing-sm;
   border-left: 4px solid;
 
   &--info {
-    background-color: rgba($boa-info, 0.08);
-    border-left-color: $boa-info;
-    color: darken($boa-info, 15%);
+    background-color: rgba(vars.$boa-info, 0.08);
+    border-left-color: vars.$boa-info;
+    color: darken(vars.$boa-info, 15%);
   }
 
   &--warning {
-    background-color: rgba($boa-warning, 0.08);
-    border-left-color: $boa-warning;
-    color: darken($boa-warning, 15%);
+    background-color: rgba(vars.$boa-warning, 0.08);
+    border-left-color: vars.$boa-warning;
+    color: darken(vars.$boa-warning, 15%);
   }
 
   &--error {
-    background-color: rgba($boa-error, 0.08);
-    border-left-color: $boa-error;
-    color: darken($boa-error, 10%);
+    background-color: rgba(vars.$boa-error, 0.08);
+    border-left-color: vars.$boa-error;
+    color: darken(vars.$boa-error, 10%);
   }
 
   &--success {
-    background-color: rgba($boa-success, 0.08);
-    border-left-color: $boa-success;
-    color: darken($boa-success, 10%);
+    background-color: rgba(vars.$boa-success, 0.08);
+    border-left-color: vars.$boa-success;
+    color: darken(vars.$boa-success, 10%);
   }
 
   &__icon {
-    margin-right: $spacing-sm;
+    margin-right: vars.$spacing-sm;
     flex-shrink: 0;
   }
 
@@ -45,7 +45,7 @@
 
   &__close {
     flex-shrink: 0;
-    margin-left: $spacing-sm;
+    margin-left: vars.$spacing-sm;
     color: inherit;
     opacity: 0.7;
 

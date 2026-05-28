@@ -1,5 +1,6 @@
-@import 'theme';
-@import 'mixins';
+@use 'theme';
+@use 'variables' as vars;
+@use 'mixins';
 
 *,
 *::before,
@@ -9,17 +10,17 @@
 
 body {
   margin: 0;
-  font-family: $boa-font-family;
+  font-family: vars.$boa-font-family;
   font-size: 14px;
   line-height: 1.5;
-  color: $boa-gray-900;
-  background-color: $boa-bg-secondary;
+  color: vars.$boa-gray-900;
+  background-color: vars.$boa-bg-secondary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  color: $boa-light-blue;
+  color: vars.$boa-light-blue;
   text-decoration: none;
 
   &:hover {
