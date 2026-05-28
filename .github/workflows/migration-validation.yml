@@ -3,7 +3,7 @@ name: Migration Validation
 on:
   push:
     branches:
-      - main
+      - master
       - migration/angular18-demo
 
 jobs:
